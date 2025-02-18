@@ -1,0 +1,25 @@
+.criteria{
+    padding-top: 52px;
+    padding-bottom: 68px;
+}
+.criteria__title{
+    color: #111111;
+    font-size: 40px;
+}
+
+.criteria__list{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 20px;
+}
+
+.criteria__description{
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+}
+/* 
+.criteria__item{
+    width: 500px;
+} */

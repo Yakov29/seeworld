@@ -1,0 +1,28 @@
+.country{
+    padding-top: 32px;
+}
+
+.country__list{
+    display: flex;
+    gap: 20px;
+}
+
+.country__name{
+    font-size: 32px;
+}
+
+.country__section-title{
+    font-size: 32px
+}
+
+.country__title{
+    font-weight: bold;
+}
+
+.country__votes{
+    font-weight: bold;
+}
+
+.country__image{
+    width: 413px;
+}

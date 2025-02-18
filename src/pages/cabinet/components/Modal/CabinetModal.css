@@ -1,0 +1,135 @@
+
+.cabinet__modal {
+    display: block;
+    text-align: center;
+    max-width: 629px;
+    padding: 40px 24px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cabinet__title {
+    font-size: 32px;
+    margin-bottom: 25px;
+ 
+}
+
+.cabinet__description {
+    font-size: 18px;
+}
+
+.cabinet__inputs {
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    
+}
+
+
+
+.cabinet__input {
+    box-sizing: border-box;
+    width: 410px;
+    height: 48px;
+    padding-left: 16px;
+    background: none;
+    border: 3px solid #266294;
+    color: #266294;
+    margin-left: auto;
+}
+
+.cabinet__button {
+    width: 100%;
+    height: 48px;
+    margin-top: 25px;
+    background-color: #266294;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.cabinet__button:hover {
+    background-color: #1e4f73;
+}
+
+.cabinet__select{
+    display: flex;
+    justify-content: center;
+    gap: 31px;
+}
+
+.cabinet__select__item{
+   display: flex;
+   align-items: center;
+}
+
+.cabinet__select__checkbox{
+    background: none;
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #266294;
+}
+
+.logib__select__span{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.cabinet__forgot{
+    color:  #766F6F;
+    text-decoration: underline;
+    font-size: 20px;
+}
+
+.cabinet__submit{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25px;
+    background-color: #266294;
+    width: 100%;
+    height: 50px;
+    border: none;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.cabinet__service__title{
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 25px;
+}
+
+.cabinet__service__list{
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.cabinet__service__image{
+    width: 40px;
+    height: 40px;
+    border-radius: 100px;
+    border: 2px solid #266294;
+    padding: 5px;
+}
+
+.cabinet__noaccount__title{
+    font-size: 20px;
+    margin-bottom: 25px;
+}
+
+.cabinet__noaccount__link{
+    margin-top: 25px;
+    font-size: 20px;
+    color: #766F6F;
+    text-decoration: underline;
+}
+
+.cabinet__inputs__item{
+    display: flex;
+    align-items: center;
+}

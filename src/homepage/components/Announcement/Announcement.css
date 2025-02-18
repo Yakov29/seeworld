@@ -1,0 +1,19 @@
+.announcement__list{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.announcement{
+    padding-top: 87px;
+    padding-bottom: 87px;
+}
+
+.announcement__title-section{
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.announcement__image{
+    margin-bottom: 12px;
+}

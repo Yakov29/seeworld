@@ -1,0 +1,161 @@
+.new__modal {
+  display: block;
+  text-align: center;
+  max-width: 457px;
+  padding: 40px 24px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.new__title {
+  font-size: 32px;
+  margin-bottom: 25px;
+}
+
+.new__description {
+  font-size: 18px;
+}
+
+.new__inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.new__input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 48px;
+  padding-left: 16px;
+  background: none;
+  border: 3px solid #266294;
+  color: #266294;
+}
+
+.new__button {
+  width: 100%;
+  height: 48px;
+  margin-top: 25px;
+  background-color: #266294;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.new__button:hover {
+  background-color: #1e4f73;
+}
+
+.new__select {
+  display: flex;
+  justify-content: center;
+  gap: 31px;
+}
+
+.new__select__item {
+  display: flex;
+  align-items: center;
+}
+
+.new__select__checkbox {
+  background: none;
+  margin-right: 10px;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #266294;
+}
+
+.logib__select__span {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.new__forgot {
+  color: #766f6f;
+  text-decoration: underline;
+  font-size: 20px;
+}
+
+.new__submit {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 25px;
+  background-color: #266294;
+  width: 100%;
+  height: 50px;
+  border: none;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.new__service__title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 25px;
+}
+
+.new__service__list {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+.new__service__image {
+  width: 40px;
+  height: 40px;
+  border-radius: 100px;
+  border: 2px solid #266294;
+  padding: 5px;
+}
+
+.new__noaccount__title {
+  font-size: 20px;
+  margin-bottom: 25px;
+}
+
+.new__noaccount__link {
+  margin-top: 25px;
+  font-size: 20px;
+  color: #766f6f;
+  text-decoration: underline;
+}
+
+.new__item__data {
+  display: block;
+}
+
+.new__item__data__item {
+  display: flex;
+  align-items: center;
+}
+
+.new__item__data__box {
+  display: flex;
+  margin-left: auto;
+  align-items: center;
+}
+
+.new__item__data__button {
+  background: none;
+  font-size: 20px;
+  border: none;
+}
+
+.new__item__data__button:hover {
+  color: #266294;
+}
+
+.new__item__data__number {
+  font-weight: bold;
+}
+
+#button-left {
+  margin-right: 25px;
+}
+
+#button-right {
+  margin-left:25px ;
+}

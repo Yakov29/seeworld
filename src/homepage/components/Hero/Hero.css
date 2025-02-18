@@ -1,0 +1,39 @@
+.hero{
+    background-image: url("../../../images/hero.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 850px;
+    padding-top: 160px;
+}
+
+.hero__title{
+    font-size: 96px;
+    color: #F8F7F7;
+}
+
+.hero__description{
+    font-size: 32px;
+    font-weight: bold;
+    color: #F8F7F7;
+    margin-top: 20px;
+}
+
+.hero__buttons{
+    margin-top: 240px;
+}
+
+.hero__button{
+    width: 235px;
+    height: 48px;
+    background-color: #E96E25;
+    border: 2px solid #E96E25;
+    font-size: 16px;
+    font-weight: bold;
+    color: #F8F7F7;
+}
+
+.hero__button:last-child{
+    margin-left: 40px;
+    background: none;
+    color: #E96E25;
+}

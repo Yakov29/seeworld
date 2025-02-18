@@ -1,0 +1,38 @@
+.cabinet__backdrop {
+    padding-top: 145px;
+    background-color: #ebf8ff;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    display: none;
+  }
+  
+  .close__button{
+    position: absolute;
+    font-size: 100px;
+    top: 130px;
+  
+    background: none;
+    border: none;
+  }
+
+  .cabinet__chose{
+   left: 80px;
+   top: 217px;
+    position: absolute;
+  }
+
+  .cabinet__chose__item{
+    display: flex;
+    align-items: center;
+    height: 58px;
+    max-width: 173px;
+    margin-top: 10p;
+  }
+
+  .cabinet__link{
+    color: #000;
+    font-size: 20px;
+  }
+
