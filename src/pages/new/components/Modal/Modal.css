@@ -1,6 +1,5 @@
 .new__modal {
   display: block;
-  text-align: center;
   max-width: 457px;
   padding: 40px 24px;
   margin-left: auto;
@@ -123,6 +122,19 @@
   text-decoration: underline;
 }
 
+.new__list{
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.new__text{
+  margin-bottom: 24px;
+  font-size: 24px;
+  font-weight: bold;
+  width: 100%;
+}
+
 .new__item__data {
   display: block;
 }
@@ -152,10 +164,53 @@
   font-weight: bold;
 }
 
+.new__item__select{
+  display: flex;
+  gap: 22px;
+}
+
+.new__item__select__item{
+  display: flex;
+}
+
+.new__item__select__span{
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.new__item__select__checkbox{
+  width: 20px;
+  height: 20px;
+}
+
+.new__textarea{
+  width: 100%;
+  max-width: 100%;
+  border: 2px solid #266294;
+  background: none;
+  min-height: 126px;
+}
+
 #button-left {
   margin-right: 25px;
 }
 
 #button-right {
   margin-left:25px ;
+}
+
+
+.photo__input{
+  height: 254px;
+}
+
+.new__send{
+  font-size: 20px;
+  font-weight: bold;
+  width: 100%;
+  height: 52px;
+  margin-top: 36px;
+  border: 0;
+  background-color: #266294;
+  color: white;
 }

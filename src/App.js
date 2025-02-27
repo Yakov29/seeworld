@@ -14,25 +14,18 @@ import LoginBackdrop from "./pages/login/components/Backdrop/LoginBackdrop";
 import PasswordBackdrop from "./pages/password/components/Backdrop/PasswordBackdrop";
 import CabinetBackdrop from "./pages/cabinet/components/Backdrop/CabinetBackdrop";
 import NewBackdrop from "./pages/new/components/Backdrop/NewBackdrop";
+
+import List from "./announcements/components/List/List"
 import { Component } from "react";
 import { use } from "react";
 import { type } from "@testing-library/user-event/dist/type";
 
 class App extends Component {
-  state = {
-    users: [
-      {
-        name: "",
-        surname: "",
-        email: "",
-        tel: "",
-        age: "",
-        password: "",
-      },
-    ],
-  };
+  state = { users: [] };
 
-  formSend = (event) => {
+ 
+
+  formSend = async (event) => {
     event.preventDefault();
 
     const user = {
@@ -42,115 +35,86 @@ class App extends Component {
       tel: event.target.elements.tel.value,
       age: event.target.elements.age.value,
       password: event.target.elements.password.value,
-      confirm: event.target.elements.confirm.value,
     };
 
-    const emails = this.state.users.forEach((user) => {
-      console.log(user.email);
+    const existingUser = this.state.users.find((u) => u.email === user.email);
+    if (existingUser) return alert("Такий Email вже існує");
+    if (user.password !== event.target.elements.confirm.value) return alert("Паролі не співпадають");
+
+    const response = await fetch("http://localhost:3000/users", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(user),
     });
 
-    if (user.password !== user.confirm) {
-      alert("Паролі не співпадають");
+    if (response.ok) alert("Реєстрація успішна");
+  };
+
+  loginSend = async (event) => {
+    event.preventDefault();
+    const email = event.target.elements.email.value;
+    const password = event.target.elements.password.value;
+
+    const response = await fetch(`http://localhost:3000/users?email=${email}`);
+    const users = await response.json();
+    const user = users.find((u) => u.password === password);
+
+    if (user) {
+      localStorage.setItem("session", JSON.stringify(user));
+      alert("Ви успішно увійшли");
+    } else {
+      alert("Невірний логін або пароль");
     }
-    if (emails === user.email) {
-      alert("Такій Email вже існує");
+  };
+
+  newPass = async (event) => {
+    event.preventDefault();
+    const email = event.target.elements.email.value;
+    const newPassword = prompt("Введіть новий пароль");
+
+    const response = await fetch(`http://localhost:3000/users?email=${email}`);
+    const users = await response.json();
+    const user = users[0];
+
+    if (user) {
+      await fetch(`http://localhost:3000/users/${user.id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...user, password: newPassword }),
+      });
+      alert("Пароль оновлено");
+    } else {
+      alert("Email не знайдено");
     }
-
-    this.state.users.push(user);
   };
 
-  loginSend = (event) => {
-    event.preventDefault();
-    const data = {
-      email: event.target.elements.email.value,
-      password: event.target.elements.password.value,
-    };
-    console.log(data);
-
-    const emails = this.state.users.forEach((user) => {
-      console.log(user.email);
-      if (data.email === user.email && data.password === user.password) {
-        localStorage.setItem("session", {
-          email: data.email,
-        });
-        alert("Ви успішно увійшли");
-      } else {
-        alert("Ви ввели невірний логін або пароль");
-      }
-    });
-  };
-
-  newPass = (event) => {
-    event.preventDefault();
-    const data = {
-      email: event.target.elements.email.value,
-    };
-    console.log(data);
-  };
-
-  cabinet = (event) => {
-    event.preventDefault();
-    const change = {
-      name: event.target.elements.name.value,
-      surname: event.target.elements.surname.value,
-      email: event.target.elements.email.value,
-      tel: event.target.elements.tel.value,
-      age: event.target.elements.date.value,
-      gender: event.target.elements.gender.value,
-      country: event.target.elements.country.value,
-    };
-
-    this.state.users.push(change);
-
-    console.log(this.state);
-  };
-
-
-
-  new = (event) => {
+  new = async (event) => {
     event.preventDefault();
     const data = {
       country: event.target.elements.country.value,
       city: event.target.elements.city.value,
       address: event.target.elements.address.value,
-      type: [],
-      // description: event.target.elements.description.value,
-      // photos: event.target.elements.photos.value,
-      email: event.target.elements.email.value
+      type: Array.from(event.target.querySelectorAll('input[type="checkbox"]:checked')).map(c => c.name),
+      description: event.target.elements.description.value,
+      photos: event.target.elements.photos.value,
+      email: event.target.elements.email.value,
     };
-    
-    const numberBox = event.target.querySelectorAll('div[class="new__item__data__box"]')
-    numberBox.forEach((box) => {
-      const buttonLeft = box.querySelectorAll('button[id="button-left"]')
-      const buttonRight = box.querySelectorAll('button[id="button-right"]')
-      let number = 0
-      const numberText = box.querySelectorAll('p[class="new__item__data__number"]')
-      console.log(buttonRight)
-    })
 
-    const checkboxes = event.target.querySelectorAll('input[type="checkbox"]:checked')
-    console.log(checkboxes)
-    checkboxes.forEach((checkbox) => {
-      data.type.push(checkbox.name)
-      console.log(data)
-    })
-   
+    const response = await fetch("http://localhost:3000/announcements", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+
+    if (response.ok) alert("Оголошення додано");
   };
 
   render() {
     return (
       <div className="App">
-        <Header />
-        <Backdrop method={this.formSend} />
-        <CabinetBackdrop method={this.cabinet} />
-        <LoginBackdrop method={this.loginSend} />
-        <PasswordBackdrop method={this.newPass} />
         <NewBackdrop method={this.new} />
-        <Hero />
-        <Criteria />
-        <Contury italyData={italy} franceData={france} />
-        <Announcement />
-        <Footer />
+        <Header />
+        <List />
       </div>
     );
   }

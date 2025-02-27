@@ -1,0 +1,8 @@
+.announcements__list{
+    display: flex;
+    gap: 20px;
+}
+
+.announcement__image{
+    width: 414px;
+}

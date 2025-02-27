@@ -162,7 +162,7 @@ const NewModal = ({ method }) => {
             </li>
           </ul>
         </li>
-        {/* <li className="new__item">
+        <li className="new__item">
           <h4 className="new__text">Запишіть особливості вашого приміщення</h4>
           <textarea
             className="new__textarea"
@@ -178,13 +178,13 @@ const NewModal = ({ method }) => {
             більше фото або внести необхідні зміни.
           </p>
           <input
-            className="new__input"
+            className="new__input photo__input"
             id="photos"
             name="photos"
             type="file"
             multiple
           />
-        </li> */}
+        </li>
         <li className="new__item">
           <h4 className="new__text">Вкажіть ваш емейл для підтвердження</h4>
           <input

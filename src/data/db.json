@@ -1,0 +1,40 @@
+{
+  "announcements": [
+    {
+      "id": "9fa8",
+      "country": "Украина",
+      "city": "Dnipro",
+      "address": "mandrykovskaya",
+      "type": [
+        "apartment"
+      ],
+      "description": "",
+      "photos": "",
+      "email": "maloyder29ya@gmail.com"
+    },
+    {
+      "id": "ac79",
+      "country": "Грузия",
+      "city": "Тебилиси",
+      "address": "Улица Победы 34",
+      "type": [
+        "apartment"
+      ],
+      "description": "Квартира 2 комнатная",
+      "photos": "https://make-self.net/images/05/a41383ca0574502d6c4ee53bea3c04b7.jpeg",
+      "email": "maloyder29ya@gmail.com"
+    },
+    {
+      "id": "6f42",
+      "country": "Украина",
+      "city": "Dnipro",
+      "address": "Набережная",
+      "type": [
+        "room"
+      ],
+      "description": "комната",
+      "photos": "",
+      "email": ""
+    }
+  ]
+}
