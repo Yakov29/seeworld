@@ -6,3 +6,7 @@
 .announcement__image{
     width: 414px;
 }
+
+.announcements__list{
+    flex-wrap: wrap;
+}

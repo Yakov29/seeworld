@@ -41,7 +41,7 @@ class App extends Component {
     if (existingUser) return alert("Такий Email вже існує");
     if (user.password !== event.target.elements.confirm.value) return alert("Паролі не співпадають");
 
-    const response = await fetch("http://localhost:3000/users", {
+    const response = await fetch("https://67c950b40acf98d07089b4a2.mockapi.io/users", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(user),
@@ -55,7 +55,7 @@ class App extends Component {
     const email = event.target.elements.email.value;
     const password = event.target.elements.password.value;
 
-    const response = await fetch(`http://localhost:3000/users?email=${email}`);
+    const response = await fetch(`https://67c950b40acf98d07089b4a2.mockapi.io/users?email=${email}`);
     const users = await response.json();
     const user = users.find((u) => u.password === password);
 
@@ -72,12 +72,12 @@ class App extends Component {
     const email = event.target.elements.email.value;
     const newPassword = prompt("Введіть новий пароль");
 
-    const response = await fetch(`http://localhost:3000/users?email=${email}`);
+    const response = await fetch(`https://67c950b40acf98d07089b4a2.mockapi.io/users?email=${email}`);
     const users = await response.json();
     const user = users[0];
 
     if (user) {
-      await fetch(`http://localhost:3000/users/${user.id}`, {
+      await fetch(`https://67c950b40acf98d07089b4a2.mockapi.io/users/${user.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...user, password: newPassword }),
@@ -88,33 +88,25 @@ class App extends Component {
     }
   };
 
-  new = async (event) => {
-    event.preventDefault();
-    const data = {
-      country: event.target.elements.country.value,
-      city: event.target.elements.city.value,
-      address: event.target.elements.address.value,
-      type: Array.from(event.target.querySelectorAll('input[type="checkbox"]:checked')).map(c => c.name),
-      description: event.target.elements.description.value,
-      photos: event.target.elements.photos.value,
-      email: event.target.elements.email.value,
-    };
-
-    const response = await fetch("http://localhost:3000/announcements", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
-
-    if (response.ok) alert("Оголошення додано");
-  };
+  
 
   render() {
     return (
       <div className="App">
-        <NewBackdrop method={this.new} />
         <Header />
-        <List />
+         <Backdrop method={this.formSend} />
+         <CabinetBackdrop method={this.cabinet} />
+         <LoginBackdrop method={this.loginSend} />
+         <PasswordBackdrop method={this.newPass} />
+         <NewBackdrop method={this.new} />
+         <Hero />
+         <Criteria />
+         <Contury italyData={italy} franceData={france} />
+         <Announcement />
+         <Footer />
+        {/* <NewBackdrop />
+        <Header />
+        <List /> */}
       </div>
     );
   }

@@ -1,18 +1,6 @@
 {
   "announcements": [
     {
-      "id": "9fa8",
-      "country": "Украина",
-      "city": "Dnipro",
-      "address": "mandrykovskaya",
-      "type": [
-        "apartment"
-      ],
-      "description": "",
-      "photos": "",
-      "email": "maloyder29ya@gmail.com"
-    },
-    {
       "id": "ac79",
       "country": "Грузия",
       "city": "Тебилиси",
@@ -25,16 +13,26 @@
       "email": "maloyder29ya@gmail.com"
     },
     {
-      "id": "6f42",
+      "id": "34ca",
       "country": "Украина",
       "city": "Dnipro",
-      "address": "Набережная",
+      "address": "mandrykovskaya",
+      "type": [],
+      "description": "",
+      "photos": "https://www.aklas.ua/storage/fotobank/9f2658651107c79deab7f4378d82054d.jpg",
+      "email": "maloyder29ya@gmail.com"
+    },
+    {
+      "id": "6a03",
+      "country": "Украина",
+      "city": "Dnipro",
+      "address": "mandrykovskaya",
       "type": [
-        "room"
+        "apartment"
       ],
-      "description": "комната",
-      "photos": "",
-      "email": ""
+      "description": "",
+      "photos": "C:\\fakepath\\0e7adea5-5283-4cc6-b0dc-b7c469357cf7.JPG",
+      "email": "maloyder29ya@gmail.com"
     }
   ]
 }

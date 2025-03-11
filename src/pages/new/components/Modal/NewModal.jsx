@@ -2,10 +2,27 @@ import React from "react";
 import "./Modal.css";
 import { FaRegArrowAltCircleLeft } from "react-icons/fa";
 import { FaRegArrowAltCircleRight } from "react-icons/fa";
+import { postAnnouncementAPI } from "../../../../api/postAnnouncementAPI";
 
-const NewModal = ({ method }) => {
+const NewModal =  () => {
+  const send = async (event) => {
+    event.preventDefault();
+    const data = {
+      country: event.target.elements.country.value,
+      city: event.target.elements.city.value,
+      address: event.target.elements.address.value,
+      type: Array.from(event.target.querySelectorAll('input[type="checkbox"]:checked')).map(c => c.name),
+      description: event.target.elements.description.value,
+      photos: event.target.elements.photos.value,
+      email: event.target.elements.email.value,
+    };
+
+    postAnnouncementAPI(data)
+
+   
+  };
   return (
-    <form onSubmit={method} className="new__modal">
+    <form onSubmit={send} className="new__modal">
       <h2 className="new__title">Створити оголошення</h2>
       <ul className="new__list">
         <li className="new__item">
@@ -181,8 +198,6 @@ const NewModal = ({ method }) => {
             className="new__input photo__input"
             id="photos"
             name="photos"
-            type="file"
-            multiple
           />
         </li>
         <li className="new__item">

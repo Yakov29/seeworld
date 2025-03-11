@@ -5,20 +5,40 @@ class List extends Component {
     state = { announcements: [] };
 
     componentDidMount() {
-        fetch("http://localhost:3000/announcements")
-            .then((res) => res.json())
+       const response = fetch("https://67c950b40acf98d07089b4a2.mockapi.io/announcements").then((res) => res.json())
             .then((announcements) => {
                 if (Array.isArray(announcements)) {
                     this.setState({ announcements });
                     console.log(announcements)
+                
                 } else {
                     this.setState({ announcements: [] });
                 }
             })
             .catch((error) => {
-                console.error("Помилка при завантаженні даних:", error);
                 this.setState({ announcements: [] });
             });
+            console.log(response)
+    }
+
+
+    componentDidUpdate() {
+        const response = fetch("https://67c950b40acf98d07089b4a2.mockapi.io/announcements").then((res) => res.json())
+        .then((announcements) => {
+            if (Array.isArray(announcements)) {
+                if (announcements.length !== this.state.announcements.length) {
+                    this.setState({ announcements });
+                }
+                console.log(announcements)
+            
+            } else {
+                this.setState({ announcements: [] });
+            }
+        })
+        .catch((error) => {
+            this.setState({ announcements: [] });
+        });
+      
     }
 
     render() {
