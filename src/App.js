@@ -15,7 +15,6 @@ import NewBackdrop from "./pages/new/components/Backdrop/NewBackdrop";
 import { france } from "./data/country1";
 import { italy } from "./data/country2";
 
-// Импорт вашей функции для получения профиля
 import { getProfileAPI } from "./api/getProfileAPI";
 
 class App extends Component {
@@ -34,7 +33,6 @@ class App extends Component {
     getProfileAPI()
       .then((profileData) => {
         this.setState({ profile: profileData }, () => {
-          console.log("Дані профілю:", this.state.profile);
 
           if (this.state.profile !== null) {
             const headerButton = document.querySelector(".header__button");
@@ -46,7 +44,7 @@ class App extends Component {
         });
       })
       .catch((error) => {
-        console.error("Ошибка при получении профиля:", error);
+
       });
   }
 
@@ -153,17 +151,7 @@ class App extends Component {
         <Announcement />
         <Footer />
 
-        {/* Вывод данных профиля, если они есть */}
-        {profile && (
-          <div className="profile-info">
-            <h2>Профіль користувача</h2>
-            <p>Ім'я: {profile.name}</p>
-            <p>Прізвище: {profile.surname}</p>
-            <p>Email: {profile.email}</p>
-            <p>Телефон: {profile.tel}</p>
-            <p>Вік: {profile.age}</p>
-          </div>
-        )}
+      
       </div>
     );
   }
