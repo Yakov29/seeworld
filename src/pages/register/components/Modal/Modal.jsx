@@ -36,7 +36,11 @@ const Modal = ({method}) => {
             </li>
         </ul>
       </div>
-      <button type="submit">Відправити</button>
+      <button className="register__submit" type="submit">Відправити</button>
+      <div className="register__link">
+        <span className="register__link__title">Вже маєте акаунт?    <button type="button" className="register__link__button">Авторизуйтесь</button></span>
+     
+      </div>
     </form>
   );
 };

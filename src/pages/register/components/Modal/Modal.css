@@ -1,5 +1,9 @@
 .register__modal{
     display: block;
+    max-width: 457px;
+    padding: 40px 24px;
+    margin-left: auto;
+    margin-right: auto;
     text-align: center;
 }
 
@@ -36,4 +40,33 @@
 
 .register__password__item:last-child{
     margin-top: 16px;
+}
+
+.register__submit{
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 25px;
+  background-color: #266294;
+  width: 100%;
+  height: 50px;
+  border: none;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.register__link{
+    margin-top: 20px;
+}
+
+.register__link__title{
+    font-size: 24px;
+}
+
+.register__link__button{
+    background: none;
+    border: none;
+    color: #266294;
+    font-size: 24px;
 }

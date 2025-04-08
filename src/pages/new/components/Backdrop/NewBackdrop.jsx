@@ -9,7 +9,7 @@ const NewBackdrop = ({ method }) => {
     document.querySelector(".new__backdrop").style.display = "none";
   
   };
-  const openModal = (event) => {
+  const openNewModal = (event) => {
     event.preventDefault(); 
     document.querySelector(".new__backdrop").style.display = "block";
   };

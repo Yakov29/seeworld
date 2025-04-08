@@ -1,1 +1,1 @@
-export const getAnnouncementAPI = async () => await fetch("https://67c950b40acf98d07089b4a2.mockapi.io/announcements").then((res) => res.json())
+export const getAnnouncementAPI = async () => await fetch("https://67c950b40acf98d07089b4a2.mockapi.io/announcement").then((res) => res.json())

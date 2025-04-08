@@ -18,7 +18,8 @@ const NewModal =  () => {
     };
 
     postAnnouncementAPI(data)
-
+    alert("Ваше оголошення успішно надіслано!")
+    window.location.reload();
    
   };
   return (

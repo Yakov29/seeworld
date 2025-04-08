@@ -1,7 +1,4 @@
-import { france } from "./data/country1";
-import { italy } from "./data/country2";
-
-// import HeaderImage from './homepage/Header/HeaderImage/HeaderImage';
+import React, { Component } from "react";
 import Header from "./homepage/Header/header";
 import Hero from "./homepage/components/Hero/Hero";
 import Criteria from "./homepage/components/Criteria/Criteria";
@@ -15,15 +12,43 @@ import PasswordBackdrop from "./pages/password/components/Backdrop/PasswordBackd
 import CabinetBackdrop from "./pages/cabinet/components/Backdrop/CabinetBackdrop";
 import NewBackdrop from "./pages/new/components/Backdrop/NewBackdrop";
 
-import List from "./announcements/components/List/List"
-import { Component } from "react";
-import { use } from "react";
-import { type } from "@testing-library/user-event/dist/type";
+import { france } from "./data/country1";
+import { italy } from "./data/country2";
+
+// Импорт вашей функции для получения профиля
+import { getProfileAPI } from "./api/getProfileAPI";
 
 class App extends Component {
-  state = { users: [] };
+  state = {
+    users: [],
+    profile: null,
+  };
 
- 
+  componentDidMount() {
+    const openNewModal = (event) => {
+      event.preventDefault();
+      document.querySelector(".new__backdrop").style.display = "block";
+    };
+    const openButton = document.querySelector(".header__button");
+
+    getProfileAPI()
+      .then((profileData) => {
+        this.setState({ profile: profileData }, () => {
+          console.log("Дані профілю:", this.state.profile);
+
+          if (this.state.profile !== null) {
+            const headerButton = document.querySelector(".header__button");
+            if (headerButton) {
+              headerButton.textContent = "Додати оголошення";
+              openButton.addEventListener("click", openNewModal);
+            }
+          }
+        });
+      })
+      .catch((error) => {
+        console.error("Ошибка при получении профиля:", error);
+      });
+  }
 
   formSend = async (event) => {
     event.preventDefault();
@@ -39,15 +64,26 @@ class App extends Component {
 
     const existingUser = this.state.users.find((u) => u.email === user.email);
     if (existingUser) return alert("Такий Email вже існує");
-    if (user.password !== event.target.elements.confirm.value) return alert("Паролі не співпадають");
+    if (user.password !== event.target.elements.confirm.value)
+      return alert("Паролі не співпадають");
 
-    const response = await fetch("https://67c950b40acf98d07089b4a2.mockapi.io/users", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(user),
-    });
+    const response = await fetch(
+      "https://67c950b40acf98d07089b4a2.mockapi.io/users",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(user),
+      }
+    );
 
+    const newUser = await response.json();
+    console.log(newUser);
+    localStorage.setItem(
+      "user",
+      JSON.stringify({ email: newUser.email, password: newUser.password })
+    );
     if (response.ok) alert("Реєстрація успішна");
+    window.location.reload();
   };
 
   loginSend = async (event) => {
@@ -55,13 +91,20 @@ class App extends Component {
     const email = event.target.elements.email.value;
     const password = event.target.elements.password.value;
 
-    const response = await fetch(`https://67c950b40acf98d07089b4a2.mockapi.io/users?email=${email}`);
+    const response = await fetch(
+      `https://67c950b40acf98d07089b4a2.mockapi.io/users?email=${email}&password=${password}`
+    );
     const users = await response.json();
-    const user = users.find((u) => u.password === password);
+    const user = users[0];
 
-    if (user) {
-      localStorage.setItem("session", JSON.stringify(user));
+    if (user && user.email === email && user.password === password) {
+      console.log(user);
+      localStorage.setItem(
+        "user",
+        JSON.stringify({ email: user.email, password: user.password })
+      );
       alert("Ви успішно увійшли");
+      window.location.reload();
     } else {
       alert("Невірний логін або пароль");
     }
@@ -72,41 +115,55 @@ class App extends Component {
     const email = event.target.elements.email.value;
     const newPassword = prompt("Введіть новий пароль");
 
-    const response = await fetch(`https://67c950b40acf98d07089b4a2.mockapi.io/users?email=${email}`);
+    const response = await fetch(
+      `https://67c950b40acf98d07089b4a2.mockapi.io/users?email=${email}`
+    );
     const users = await response.json();
     const user = users[0];
 
     if (user) {
-      await fetch(`https://67c950b40acf98d07089b4a2.mockapi.io/users/${user.id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...user, password: newPassword }),
-      });
+      await fetch(
+        `https://67c950b40acf98d07089b4a2.mockapi.io/users/${user.id}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ ...user, password: newPassword }),
+        }
+      );
       alert("Пароль оновлено");
     } else {
       alert("Email не знайдено");
     }
   };
 
-  
-
   render() {
+    const { profile } = this.state; // Извлекаем данные профиля из состояния
+
     return (
       <div className="App">
         <Header />
-         <Backdrop method={this.formSend} />
-         <CabinetBackdrop method={this.cabinet} />
-         <LoginBackdrop method={this.loginSend} />
-         <PasswordBackdrop method={this.newPass} />
-         <NewBackdrop method={this.new} />
-         <Hero />
-         <Criteria />
-         <Contury italyData={italy} franceData={france} />
-         <Announcement />
-         <Footer />
-        {/* <NewBackdrop />
-        <Header />
-        <List /> */}
+        <Backdrop method={this.formSend} />
+        <CabinetBackdrop method={this.cabinet} />
+        <LoginBackdrop method={this.loginSend} />
+        <PasswordBackdrop method={this.newPass} />
+        <NewBackdrop method={this.new} />
+        <Hero />
+        <Criteria />
+        <Contury italyData={italy} franceData={france} />
+        <Announcement />
+        <Footer />
+
+        {/* Вывод данных профиля, если они есть */}
+        {profile && (
+          <div className="profile-info">
+            <h2>Профіль користувача</h2>
+            <p>Ім'я: {profile.name}</p>
+            <p>Прізвище: {profile.surname}</p>
+            <p>Email: {profile.email}</p>
+            <p>Телефон: {profile.tel}</p>
+            <p>Вік: {profile.age}</p>
+          </div>
+        )}
       </div>
     );
   }

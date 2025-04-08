@@ -10,7 +10,7 @@ const Hero = () => {
         <span className="hero__description">Подорожуй зі смаком</span>
         <div className="hero__buttons">
           <button className="hero__button">Знайти оголошення</button>
-          <button className="hero__button" id="login">Подати оголошення</button>
+          <button className="hero__button newButton" id="login">Подати оголошення</button>
         </div>
       </Container>
     </section>
