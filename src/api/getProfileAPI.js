@@ -12,6 +12,7 @@ export const getProfileAPI = async () => {
             },
           }
         );
+       
         const users = await response.json();
         if (users.length > 0) {
           return users[0];  

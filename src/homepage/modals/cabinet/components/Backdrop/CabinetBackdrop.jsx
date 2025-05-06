@@ -24,7 +24,7 @@ const CabinetBackdrop = ({ method }) => {
         <button className="close__button" onClick={handleClose}>
           <IoClose />
         </button>
-        <ul className="cabinet__chose">
+        {/* <ul className="cabinet__chose">
           <li className="cabinet__chose__item">
             <a href="#" className="cabinet__link">Особисті дані</a>
           </li>
@@ -40,7 +40,7 @@ const CabinetBackdrop = ({ method }) => {
           <li href="#" className="cabinet__chose__item">
             <a className="cabinet__link">Безпека</a>
           </li>
-        </ul>
+        </ul> */}
         <Modal method={method} />
       </div>
     </div>

@@ -1,12 +1,12 @@
 .announcement__list{
     display: flex;
-    flex-wrap: wrap;
     gap: 20px;
+    flex-wrap: wrap;
+
 }
 
-.announcement{
-    padding-top: 87px;
-    padding-bottom: 87px;
+.announcement__item{
+    max-width: 413px;
 }
 
 .announcement__title-section{
@@ -17,4 +17,7 @@
 .announcement__image{
     margin-bottom: 12px;
     width: 413px;
+    height: 300px;
+    object-fit: cover;
+
 }

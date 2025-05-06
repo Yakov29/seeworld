@@ -2,6 +2,8 @@ import React from "react";
 import "./header.css";
 import logo from "../../logo.svg";
 import Container from "../components/Container/Container";
+import { FaRegHeart } from "react-icons/fa";
+
 
 const Header = () => {
  
@@ -22,7 +24,7 @@ const Header = () => {
           </li>
           <li className="header__item">
             <a href="#" className="header__link">
-              ❤️
+              <FaRegHeart/>
             </a>
           </li>
           <li className="header__item">

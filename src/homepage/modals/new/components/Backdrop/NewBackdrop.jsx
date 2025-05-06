@@ -4,7 +4,6 @@ import { IoClose } from "react-icons/io5";
 import "./Backdrop.css";
 
 const NewBackdrop = ({ method }) => {
-  const openButton = document.querySelector
   const handleClose = () => {
     document.querySelector(".new__backdrop").style.display = "none";
   

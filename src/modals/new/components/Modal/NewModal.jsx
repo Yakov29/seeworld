@@ -2,7 +2,7 @@ import React from "react";
 import "./Modal.css";
 import { FaRegArrowAltCircleLeft } from "react-icons/fa";
 import { FaRegArrowAltCircleRight } from "react-icons/fa";
-import { postAnnouncementAPI } from "../../../../api/postAnnouncementAPI";
+import { postAnnouncementAPI } from "../../../../../api/postAnnouncementAPI";
 
 const NewModal =  () => {
   const send = async (event) => {
