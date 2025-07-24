@@ -2,11 +2,11 @@ import React from "react";
 import "./Footer.css";
 import Container from "../Container/Container";
 
-import logo from "../../../logo.svg";
-import facebook from "../../../images/facebook.svg";
-import youtube from "../../../images/youtube.svg";
-import instagram from "../../../images/instagram.svg";
-import twitter from "../../../images/twitter.svg";
+import logo from "../../logo.svg";
+import facebook from "../../images/facebook.svg";
+import youtube from "../../images/youtube.svg";
+import instagram from "../../images/instagram.svg";
+import twitter from "../../images/twitter.svg";
 
 const Footer = () => {
   return (

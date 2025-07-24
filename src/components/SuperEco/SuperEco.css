@@ -1,0 +1,68 @@
+.supereco {
+
+    padding-top: 50px;
+}
+
+.allannouncements__title {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.supereco__title {
+    font-weight: 24px;
+}
+
+.supereco__content {
+    display: flex;
+    align-items: center;
+    margin-top: 84px;
+}
+
+.supereco__open {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    color: #266294;
+    border-bottom: 2px solid #266294;
+    margin-left: auto;
+}
+
+
+.supereco__list {
+    margin-top: 32px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.supereco__item {
+    max-width: 413px;
+    width: 100%;
+}
+
+.supereco__image {
+    width: 100%;
+    object-fit: cover;
+    height: 300px;
+}
+
+.supereco__name {
+    margin-top: 12px;
+    margin-left: 12px;
+}
+
+.supereco__description {
+    color: #766F6F;
+    margin-left: 12px;
+}
+
+.supereco__stars {
+    color: #266294;
+    margin-left: 12px;
+    align-items: center;
+}
+
+.supereco__id {
+    color: #266294;
+    margin-left: 12px;
+    align-items: center;
+}

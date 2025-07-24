@@ -1,6 +1,6 @@
 import React, { Component, useEffect, useState } from "react";
 import "./Announcement.css";
-import { getAnnouncementAPI } from "../../../api/getAnnouncementAPI";
+import { getAnnouncementAPI } from "../../api/getAnnouncementAPI";
 
 
 

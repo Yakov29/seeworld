@@ -1,8 +1,9 @@
 import React from "react";
 import "./header.css";
 import logo from "../../logo.svg";
-import Container from "../components/Container/Container";
+import Container from "../Container/Container";
 import { FaRegHeart } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 
 const Header = () => {
@@ -13,32 +14,33 @@ const Header = () => {
         <img src={logo} alt="Logo" />
         <ul className="header__list">
           <li className="header__item">
-            <a href="#" className="header__link">
+            <Link to="/" className="header__link">
               Головна
-            </a>
+            </Link>
+            
           </li>
           <li className="header__item">
-            <a href="#" className="header__link">
+            <Link to="/announcements" className="header__link">
               Всі оголошення
-            </a>
+            </Link>
           </li>
           <li className="header__item">
-            <a href="#" className="header__link">
+            <Link to="" className="header__link">
               <FaRegHeart/>
-            </a>
+            </Link>
           </li>
           <li className="header__item">
-            <a href="#" className="header__link">
+            <Link to="" className="header__link">
               <img src="./images/user.svg" alt="" />
-            </a>
+            </Link>
           </li>
           <li className="header__item">
-            <a href="#" id="cabinet" className="header__link">
+            <Link to="/cabinet" id="cabinet" className="header__link">
               Особистий кабінет
-            </a>
+            </Link>
           </li>
         </ul>
-        <a className="header__button" href="">Зареєструватись</a>
+        <Link className="header__button" href="">Зареєструватись</Link>
       </Container>
     </header>
   );

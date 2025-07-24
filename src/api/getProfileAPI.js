@@ -1,10 +1,9 @@
-export const getProfileAPI = async () => {
-    const user = JSON.parse(localStorage.getItem("user"));
+export const getProfileAPI = async ({email, password}) => {
     
-    if (user && user.email && user.password) {
+ 
       try {
         const response = await fetch(
-          `https://67c950b40acf98d07089b4a2.mockapi.io/users?email=${user.email}&password=${user.password}`,
+          `https://67c950b40acf98d07089b4a2.mockapi.io/users?email=${email}&password=${password}`,
           {
             method: "GET",
             headers: {
@@ -21,7 +20,7 @@ export const getProfileAPI = async () => {
       } catch (error) {
         return null;
       }
-    }
+    
     return null;  
   };
   

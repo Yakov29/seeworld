@@ -1,50 +1,42 @@
 import React, { useEffect, useState } from "react";
-import Header from "./homepage/Header/header";
-import Hero from "./homepage/components/Hero/Hero";
-import Criteria from "./homepage/components/Criteria/Criteria";
-import Contury from "./homepage/components/Country/Country";
-import Announcement from "./homepage/components/Announcement/Announcement";
-import Footer from "./homepage/components/Footer/Footer";
 
-import Backdrop from "./homepage/modals/register/components/Backdrop/Backdrop";
-import LoginBackdrop from "./homepage/modals/login/components/Backdrop/LoginBackdrop";
-import PasswordBackdrop from "./homepage/modals/password/components/Backdrop/PasswordBackdrop";
-import CabinetBackdrop from "./homepage/modals/cabinet/components/Backdrop/CabinetBackdrop";
-import NewBackdrop from "./homepage/modals/new/components/Backdrop/NewBackdrop";
+import { Routes, Route } from "react-router-dom";
+
+
+// import Backdrop from "./homepage/modals/register/components/Backdrop/Backdrop";
+// import LoginBackdrop from "./homepage/modals/login/components/Backdrop/LoginBackdrop";
+// import PasswordBackdrop from "./homepage/modals/password/components/Backdrop/PasswordBackdrop";
+// import CabinetBackdrop from "./homepage/modals/cabinet/components/Backdrop/CabinetBackdrop";
+// import NewBackdrop from "./homepage/modals/new/components/Backdrop/NewBackdrop";
 
 import { france } from "./data/country1";
 import { italy } from "./data/country2";
+
+import Homepage from "./pages/Homepage/Homepage";
+import AllAnnouncements from "./pages/AllAnnouncements/AllAnnouncements"
+import Cabinet from "./pages/Cabinet/Cabinet";
+
+import Header from "./components/Header/header";
+import Footer from "./components/Footer/Footer";
 
 import { getProfileAPI } from "./api/getProfileAPI";
 
 const App = () => {
   const [users, setUsers] = useState([]);
   const [profile, setProfile] = useState(null);
-
   useEffect(() => {
-    const openNewModal = (event) => {
-      event.preventDefault();
-      document.querySelector(".new__backdrop").style.display = "block";
-    };
-    const openButton = document.querySelector(".header__button");
 
-    getProfileAPI()
-      .then((profileData) => {
-        setProfile(() => {
-          if (profileData !== null) {
-            const headerButton = document.querySelector(".header__button");
-            if (headerButton) {
-              headerButton.textContent = "Додати оголошення";
 
-              openButton.addEventListener("click", openNewModal);
-            }
-          }
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+    const user = localStorage.getItem("user")
+    const userData = JSON.parse(user)
+    if (userData) {
+      setProfile(userData)
+
+    }
+
+  }, [])
+
+
   // Якщо в useEffect масив залежностей порожний,
   //  то код в useEffect виконається лише прі першому рендері сторінки,
   //  тобто це заміна componentDidMount().
@@ -141,10 +133,10 @@ const App = () => {
 
 
 
+
   return (
     <div className="App">
-      <Header />
-      <Backdrop method={formSend} />
+      {/* <Backdrop method={formSend} />
       <CabinetBackdrop method={profile} />
       <LoginBackdrop method={loginSend} />
       <PasswordBackdrop method={newPass} />
@@ -152,9 +144,17 @@ const App = () => {
       <Hero />
       <Criteria />
       <Contury italyData={italy} franceData={france} />
-      <Announcement />
+      <Announcement /> */}
+      <Header />
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/announcements" element={<AllAnnouncements />} />
+        {console.log(profile)}
+        <Route path="/cabinet" element={<Cabinet data={profile} />} />
+      </Routes>
       <Footer />
     </div>
+
   );
 };
 
