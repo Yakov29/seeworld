@@ -1,31 +1,38 @@
-.footer{
+.footer {
     background-color: #CFE7F5;
     padding-top: 35px;
     padding-bottom: 35px;
-    
- 
+
+
 }
 
 footer .container {
     display: flex;
 }
 
-.footer__list{
+.footer__list {
     display: flex;
     gap: 64px;
+
 }
 
-.footer__icons{
+.footer__icons {
     display: flex;
     gap: 28px;
     margin-left: 70%;
+    margin-top: 35px;
 }
 
-.footer__box{
+.footer__box {
     margin-left: auto;
 }
 
-.footer__link{
+.footer__link {
     color: #266294;
     font-weight: bold;
+    
+}
+
+.footer__icon-link{
+    color: #266294;
 }

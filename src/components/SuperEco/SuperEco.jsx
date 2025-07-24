@@ -38,7 +38,7 @@ const SuperEco = () => {
                                 <img className="supereco__image" src={element.photos} alt="" />
                                 <h4 className="supereco__name">{element.country}</h4>
                                 <p className="supereco__description">{element.city}, {element.address}</p>
-                                <span className="supereco__stars"><FaRegStar /> 10</span>
+                                {/* <span className="supereco__stars"><FaRegStar /> 10</span> */}
                                 <p className="supereco__id">ID: {element.id}</p>
                             </li>)
                     })}

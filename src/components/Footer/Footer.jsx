@@ -5,10 +5,12 @@ import Container from "../Container/Container";
 import { Link } from "react-router-dom";
 
 import logo from "../../logo.svg";
-import facebook from "../../images/facebook.svg";
-import youtube from "../../images/youtube.svg";
-import instagram from "../../images/instagram.svg";
-import twitter from "../../images/twitter.svg";
+import { FaFacebook } from "react-icons/fa";
+import { FaYoutube } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
+
+
 
 const Footer = () => {
   return (
@@ -35,20 +37,20 @@ const Footer = () => {
           </ul>
           <ul className="footer__icons">
             <li className="footer__icon">
-              <img className="footer__icon__link" src={facebook} alt="facebook" />
+              <a href="https://www.facebook.com/" className="footer__icon-link"> <FaFacebook /></a>
+
             </li>
             <li className="footer__icon">
-              <img className="footer__icon__link" src={youtube} alt="youtube" />
+              <a href="https://www.youtube.com/" className="footer__icon-link"> <FaYoutube /></a>
+
             </li>
             <li className="footer__icon">
-              <img
-                className="footer__icon__link"
-                src={instagram}
-                alt="instagram"
-              />
+              <a href="https://www.instagram.com/d.yakov29/" className="footer__icon-link"><FaInstagram /></a>
+
             </li>
             <li className="footer__icon">
-              <img className="footer__icon__link" src={twitter} alt="twitter" />
+              <a href="https://x.com/" className="footer__icon-link"> <FaXTwitter /></a>
+
             </li>
           </ul>
         </div>
