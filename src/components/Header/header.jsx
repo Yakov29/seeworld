@@ -40,7 +40,7 @@ const Header = () => {
             </Link>
           </li>
         </ul>
-        <Link className="header__button" href="">Зареєструватись</Link>
+        <Link className="header__button" to="/register">Зареєструватись</Link>
       </Container>
     </header>
   );
