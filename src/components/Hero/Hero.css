@@ -37,3 +37,8 @@
     background: none;
     color: #E96E25;
 }
+
+
+.newButton{
+    display: none;
+}

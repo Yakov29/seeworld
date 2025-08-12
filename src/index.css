@@ -12,7 +12,7 @@ code {
 body {
   height: 100%;
   font-family: sans-serif;
-  background-color: #fff;
+  background-color: #EBF8FF;
   color: #000;
   padding-top: 100px;
 
@@ -43,4 +43,5 @@ a {
 .wrapper{
   flex-direction: column;
   min-height: 100;
+  outline: 1px solid red;
 }

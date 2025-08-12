@@ -1,0 +1,119 @@
+.createform {
+    padding-top: 80px;
+    padding-bottom: 112px;
+}
+
+.createform__title {
+    font-size: 32px;
+    text-align: center;
+}
+
+.createform__list {
+    max-width: 500px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+}
+
+.cteateform__text {
+    font-size: 24px;
+    margin-bottom: 20px;
+
+}
+
+.createform__input {
+    height: 48px;
+    width: 100%;
+    border: 3px solid #266294;
+    padding-left: 16px;
+    padding-right: 16px;
+
+}
+
+.createform__input::placeholder {
+    color: #266294;
+
+}
+
+
+.cteateform__buttons {
+    display: flex;
+    gap: 22px;
+}
+
+.createform__button {
+    width: 123px;
+    background: none;
+    border: 3px solid #266294;
+    font-size: 16px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    cursor: pointer;
+
+}
+
+.createform__more {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.createform__more-item {
+    width: 100%;
+    position: relative;
+}
+
+.createform__more-span {
+    font-size: 24px;
+}
+
+.createform__more-input {
+    font-size: 24px;
+    color: black;
+    font-weight: bold;
+    position: absolute;
+    width: 50px;
+    right: 0;
+}
+
+.createform__more-input::placeholder {
+    color: black;
+    font-weight: bold;
+}
+
+.createform__textarea {
+    margin-top: 20px;
+    border: 3px solid #266294;
+    width: 100%;
+    height: 100%;
+    color: #266294;
+    max-height: 126px;
+    max-width: 100%;
+    min-width: 100%;
+}
+
+.createform__image-text {
+    margin-bottom: 36px;
+    color: #757575;
+}
+
+.createform__send{
+    display: flex;
+    margin-top: 36px;
+    background-color: #266294;
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+    height: 52px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}

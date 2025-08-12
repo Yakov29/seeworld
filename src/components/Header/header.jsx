@@ -11,10 +11,14 @@ const Header = () => {
   useEffect(() => {
     const user = localStorage.getItem("user");
     const headerButton = document.querySelector(".header__button")
+    const headerAnnouncements = document.querySelector(".newButton")
     console.log(user)
     if (user !== null) {
       headerButton.style.display = "none"
+      headerAnnouncements.style.display = "block"
     }
+
+
   }, []);
  
   return (
@@ -33,6 +37,11 @@ const Header = () => {
               Всі оголошення
             </Link>
           </li>
+          <li className="header__item addannouncement">
+            <Link to="/create" className="header__link">
+              Додати оголошення
+            </Link>
+          </li>
           <li className="header__item">
             <Link to="" className="header__link">
               <FaRegHeart/>
@@ -43,6 +52,7 @@ const Header = () => {
               <img src="./images/user.svg" alt="" />
             </Link>
           </li>
+          
           <li className="header__item">
             <Link to="/cabinet" id="cabinet" className="header__link">
               Особистий кабінет

@@ -35,9 +35,9 @@ const SuperEco = () => {
                     {announcements.map(element => {
                         return (
                             <li className="supereco__item">
-                                <img className="supereco__image" src={element.photos} alt="" />
+                                <img className="supereco__image" src={element.image} alt="" />
                                 <h4 className="supereco__name">{element.country}</h4>
-                                <p className="supereco__description">{element.city}, {element.address}</p>
+                                <p className="supereco__description">{element.city}, {element.street}</p>
                                 {/* <span className="supereco__stars"><FaRegStar /> 10</span> */}
                                 <p className="supereco__id">ID: {element.id}</p>
                             </li>)
