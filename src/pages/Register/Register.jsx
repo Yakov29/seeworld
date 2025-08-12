@@ -1,8 +1,12 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Container from "../../components/Container/Container";
 import "./Register.css"
+import {Link} from "react-router-dom";
 
 const Register = ({ register }) => {
+    useEffect(() => {
+        document.title = "SeeWorld | Реєстрація"
+    }, []);
     return (
         <main>
             <section className="register">
@@ -36,6 +40,12 @@ const Register = ({ register }) => {
                         </ul>
                         <button className="register__button" type="submit">Зареєстуватись</button>
                     </form>
+                    <div className="register__noaccount">
+                        <h3 className="register__noaccount__title">
+                            Є обліковий запис?
+                        </h3>
+                        <Link to="/login" className="register__noaccount__link">Увійдіть</Link>
+                    </div>
                 </Container>
             </section>
         </main>

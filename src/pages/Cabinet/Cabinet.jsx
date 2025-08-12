@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Cabinet.css";
 import Container from "../../components/Container/Container";
 
-const Cabinet = () => {
+const Cabinet = ({ leave }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -29,10 +29,16 @@ const Cabinet = () => {
         }
     }, []);
 
+    const clear = () => {
+        localStorage.removeItem("user");
+        document.location.href = "/"
+    }
+
     return (
-        <main>
+        <main className="cabinet__main">
             <section className="cabinet">
                 <Container>
+
                     <h2 className="cabinet__title">Особистий кабінет</h2>
 
                     {isLoggedIn ? (
@@ -67,6 +73,9 @@ const Cabinet = () => {
                             Будь ласка, зареєструйтесь або увійдіть у систему, щоб переглянути свій кабінет.
                         </p>
                     )}
+
+                   <button className="cabinet__leave" onClick={clear} type="submit">Вийти</button>
+
                 </Container>
             </section>
         </main>

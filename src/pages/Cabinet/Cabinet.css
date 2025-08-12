@@ -1,10 +1,16 @@
+.cabinet__main{
+    flex-grow: 1;
+}
+
 .cabinet{
     text-align: center;
     padding-top: 85px;
+
 }
 
 .cabinet__title{
     font-size: 32px;
+
 }
 
 .cabinet__description{
@@ -42,4 +48,13 @@
     border: 5px solid  #266294;
     background: none;
     color: #266294;
+}
+
+.cabinet__leave{
+    margin-bottom: 100px;
+    padding: 20px;
+    background-color:  #266294;
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
 }

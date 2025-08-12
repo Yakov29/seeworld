@@ -4,22 +4,32 @@ import { Routes, Route } from "react-router-dom";
 import { france } from "./data/country1";
 import { italy } from "./data/country2";
 
+import pushProfileAPI from "./api/pushProfileAPI";
+
 import Homepage from "./pages/Homepage/Homepage";
 import AllAnnouncements from "./pages/AllAnnouncements/AllAnnouncements";
 import Cabinet from "./pages/Cabinet/Cabinet";
 import Register from "./pages/Register/Register";
+import Login from "./pages/Login/Login";
+
+import SuccesModal from "./components/SuccesModal/SuccesModal";
 
 import Header from "./components/Header/header";
 import Footer from "./components/Footer/Footer";
+import {getProfileAPI} from "./api/getProfileAPI";
+import logo from "./logo.svg";
 
 const App = () => {
   const [users, setUsers] = useState([]);
   const [profile, setProfile] = useState(null);
 
-  useEffect(() => {
-    const user = localStorage.getItem("user");
-    localStorage.setItem("user", user);
-  }, []);
+
+
+  // useEffect(() => {
+  //   const user = localStorage.getItem("user");
+  //   localStorage.setItem("user", user);
+  //
+  // }, []);
 
 
 const register = (e) => {
@@ -51,23 +61,67 @@ const register = (e) => {
   localStorage.setItem("user", JSON.stringify(newUser));
 
   setProfile(newUser);
+  pushProfileAPI(newUser);
+
 
   console.log("Реєстрація успішна:", newUser);
+
+  const modal = document.querySelector(".succesModal")
+
+  modal.style.display = "flex";
+
+  setTimeout(() => {
+      const modal = document.querySelector(".succesModal")
+      modal.style.display = "none"
+  }, 2500)
+
+  document.location.href = "/"
+  e.target.reset()
+
 };
 
 
+const login = (e) => {
+    e.preventDefault()
+
+
+    const formData = e.target
+    const email = formData.email.value
+    const password = formData.password.value
+
+
+
+  getProfileAPI(email).then((data) => {
+    localStorage.setItem("user", JSON.stringify(data));
+    document.location.href = "/"
+  })
+
+
+
+}
+
+
+const leave = () => {
+    localStorage.removeItem("user")
+  console.log("LOGOUT");
+}
 
 
   return (
     <div className="App">
+      <div className="wrapper">
       <Header />
+
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/announcements" element={<AllAnnouncements />} />
-        <Route path="/cabinet" element={<Cabinet data={profile} />} />
+        <Route path="/cabinet" element={<Cabinet data={profile} />} leave={leave} />
         <Route path="/register" element={<Register register={register}/>} />
+        <Route path="/login" element={<Login login={login}/>} />
       </Routes>
+      <SuccesModal/>
       <Footer />
+      </div>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "./header.css";
 import logo from "../../logo.svg";
 import Container from "../Container/Container";
@@ -7,6 +7,15 @@ import { Link } from "react-router-dom";
 
 
 const Header = () => {
+
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    const headerButton = document.querySelector(".header__button")
+    console.log(user)
+    if (user !== null) {
+      headerButton.style.display = "none"
+    }
+  }, []);
  
   return (
     <header className="header">

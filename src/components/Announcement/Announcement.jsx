@@ -34,6 +34,7 @@ const Announcement = () => {
   };
 
   return (
+      <section className="announcement">
     <div className="container">
       <h2 className="announcement__title-section">Останні оголошення</h2>
       <ul className="announcement__list">
@@ -62,6 +63,7 @@ const Announcement = () => {
         )}
       </ul>
     </div>
+      </section>
   );
 };
 

@@ -1,3 +1,7 @@
+.announcement{
+    padding-bottom: 150px;
+}
+
 .announcement__list{
     display: flex;
     gap: 20px;

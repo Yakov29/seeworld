@@ -54,3 +54,16 @@
     font-weight: bold;
     color: #ffffff;
 }
+
+.register__noaccount__title{
+    font-size: 20px;
+    margin-bottom: 25px;
+    margin-top: 25px;
+}
+
+.register__noaccount__link{
+    margin-top: 25px;
+    font-size: 20px;
+    color: #766F6F;
+    text-decoration: underline;
+}

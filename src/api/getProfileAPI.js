@@ -1,9 +1,9 @@
-export const getProfileAPI = async ({email, password}) => {
-    
+export const getProfileAPI = async (email, password) => {
+        console.log("getProfileAPI", email, password);
  
       try {
         const response = await fetch(
-          `https://67c950b40acf98d07089b4a2.mockapi.io/users?email=${email}&password=${password}`,
+          `https://6882916c21fa24876a9b3c72.mockapi.io/users?email=${email}`,
           {
             method: "GET",
             headers: {
@@ -14,7 +14,8 @@ export const getProfileAPI = async ({email, password}) => {
        
         const users = await response.json();
         if (users.length > 0) {
-          return users[0];  
+            console.log(users[0])
+          return users[0]
         }
         return null; 
       } catch (error) {
