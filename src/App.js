@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
+import { lazy } from "react";
 
 import { france } from "./data/country1";
 import { italy } from "./data/country2";
@@ -7,19 +8,30 @@ import { italy } from "./data/country2";
 import pushProfileAPI from "./api/pushProfileAPI";
 import { postAnnouncementAPI } from "./api/postAnnouncementAPI";
 
-import Homepage from "./pages/Homepage/Homepage";
-import AllAnnouncements from "./pages/AllAnnouncements/AllAnnouncements";
-import Cabinet from "./pages/Cabinet/Cabinet";
-import Register from "./pages/Register/Register";
-import Login from "./pages/Login/Login";
-import Create from "./pages/Create/Create";
-
-import SuccesModal from "./components/SuccesModal/SuccesModal";
-
-import Header from "./components/Header/header";
-import Footer from "./components/Footer/Footer";
 import { getProfileAPI } from "./api/getProfileAPI";
-import logo from "./logo.svg";
+
+// import Header from "./components/Header/header";
+const Header = lazy(() => import("./components/Header/header"))
+
+// import Homepage from "./pages/Homepage/Homepage";
+const Homepage = lazy(() => import("./pages/Homepage/Homepage"))
+// import AllAnnouncements from "./pages/AllAnnouncements/AllAnnouncements";
+const AllAnnouncements = lazy(() => import("./pages/AllAnnouncements/AllAnnouncements"))
+// import Cabinet from "./pages/Cabinet/Cabinet";
+const Cabinet = lazy(() => import("./pages/Cabinet/Cabinet"))
+// import Register from "./pages/Register/Register";
+const Register = lazy(() => import("./pages/Register/Register"))
+// import Login from "./pages/Login/Login";
+const Login = lazy(() => import("./pages/Login/Login"))
+// import Create from "./pages/Create/Create";
+const Create = lazy(() => import("./pages/Create/Create"))
+// import SuccesModal from "./components/SuccesModal/SuccesModal";
+const SuccesModal = lazy(() => import("./components/SuccesModal/SuccesModal"))
+
+
+// import Footer from "./components/Footer/Footer";
+const Footer = lazy(() => import("./components/Footer/Footer"))
+
 
 const App = () => {
   const [users, setUsers] = useState([]);
