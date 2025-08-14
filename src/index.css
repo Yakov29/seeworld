@@ -43,5 +43,5 @@ a {
 .wrapper{
   flex-direction: column;
   min-height: 100;
-  outline: 1px solid red;
+  /* outline: 1px solid red; */
 }

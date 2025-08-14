@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import "./header.css";
 import logo from "../../logo.svg";
 import Container from "../Container/Container";
@@ -13,14 +13,20 @@ const Header = () => {
     const headerButton = document.querySelector(".header__button")
     const headerAnnouncements = document.querySelector(".newButton")
     console.log(user)
-    if (user !== null) {
-      headerButton.style.display = "none"
-      headerAnnouncements.style.display = "block"
+
+    console.log(headerAnnouncements)
+
+    if (headerAnnouncements !== null) {
+
+      if (user !== null) {
+        headerButton.style.display = "none"
+      }
     }
 
 
+
   }, []);
- 
+
   return (
     <header className="header">
       <Container>
@@ -30,7 +36,7 @@ const Header = () => {
             <Link to="/" className="header__link">
               Головна
             </Link>
-            
+
           </li>
           <li className="header__item">
             <Link to="/announcements" className="header__link">
@@ -44,7 +50,7 @@ const Header = () => {
           </li>
           <li className="header__item">
             <Link to="" className="header__link">
-              <FaRegHeart/>
+              <FaRegHeart />
             </Link>
           </li>
           <li className="header__item">
@@ -52,7 +58,7 @@ const Header = () => {
               <img src="./images/user.svg" alt="" />
             </Link>
           </li>
-          
+
           <li className="header__item">
             <Link to="/cabinet" id="cabinet" className="header__link">
               Особистий кабінет

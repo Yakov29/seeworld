@@ -5,6 +5,10 @@ import { FaRegStar } from "react-icons/fa";
 import { getAnnouncementAPI } from "../../api/getAnnouncementAPI";
 import "./SuperEco.css"
 
+import { FaRegHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
+
+
 
 const SuperEco = () => {
     const [announcements, setAnnouncements] = React.useState([])
@@ -39,6 +43,7 @@ const SuperEco = () => {
                                 <h4 className="supereco__name">{element.country}</h4>
                                 <p className="supereco__description">{element.city}, {element.street}</p>
                                 {/* <span className="supereco__stars"><FaRegStar /> 10</span> */}
+                                <button className="supereco__favorite"><FaRegHeart/></button>
                                 <p className="supereco__id">ID: {element.id}</p>
                             </li>)
                     })}

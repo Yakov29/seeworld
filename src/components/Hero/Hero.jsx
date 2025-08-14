@@ -1,6 +1,7 @@
 import React from "react";
 import "./Hero.css";
 import Container from "../Container/Container";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -10,7 +11,7 @@ const Hero = () => {
         <span className="hero__description">Подорожуй зі смаком</span>
         <div className="hero__buttons">
           <button className="hero__button">Знайти оголошення</button>
-          <button className="hero__button newButton" id="login">Подати оголошення</button>
+          <Link to="/create"><button className="hero__button newButton" id="login">Подати оголошення</button></Link>
         </div>
       </Container>
     </section>

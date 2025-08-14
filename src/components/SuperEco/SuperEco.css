@@ -37,6 +37,7 @@ padding-bottom: 50px;
 .supereco__item {
     max-width: 413px;
     width: 100%;
+    position: relative;
 }
 
 .supereco__image {

@@ -1,5 +1,6 @@
 .country{
     padding-top: 32px;
+    padding-bottom: 46px;
 }
 
 .country__list{
@@ -9,6 +10,7 @@
 
 .country__name{
     font-size: 32px;
+    margin-bottom: 24px;
 }
 
 .country__section-title{
@@ -17,6 +19,7 @@
 
 .country__title{
     font-weight: bold;
+   
 }
 
 .country__votes{
@@ -25,4 +28,5 @@
 
 .country__image{
     width: 413px;
+     margin-bottom: 16px;
 }
