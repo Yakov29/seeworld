@@ -2,7 +2,7 @@ import React from "react"
 import SuperEco from "../../components/SuperEco/SuperEco"
 
 
-const AllAnnouncements = () => {
+const AllAnnouncements = ({favorite}) => {
      React.useEffect(() => {
             document.title = "See World | All Announcements"
         }, [])
@@ -10,7 +10,7 @@ const AllAnnouncements = () => {
 
         <main>
            
-            <SuperEco/>
+            <SuperEco favorite={favorite}/>
         </main>
     )
 }

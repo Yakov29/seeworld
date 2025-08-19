@@ -1,56 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, lazy } from "react";
 import { Routes, Route } from "react-router-dom";
-import { lazy } from "react";
-
-import { france } from "./data/country1";
-import { italy } from "./data/country2";
-
-import pushProfileAPI from "./api/pushProfileAPI";
 import { postAnnouncementAPI } from "./api/postAnnouncementAPI";
-
 import { getProfileAPI } from "./api/getProfileAPI";
+import { addToFavorites } from "./api/addToFavorites";
+import Favorites from "./pages/Favorites/Favorites";
 
-// import Header from "./components/Header/header";
-const Header = lazy(() => import("./components/Header/header"))
-
-// import Homepage from "./pages/Homepage/Homepage";
-const Homepage = lazy(() => import("./pages/Homepage/Homepage"))
-// import AllAnnouncements from "./pages/AllAnnouncements/AllAnnouncements";
-const AllAnnouncements = lazy(() => import("./pages/AllAnnouncements/AllAnnouncements"))
-// import Cabinet from "./pages/Cabinet/Cabinet";
-const Cabinet = lazy(() => import("./pages/Cabinet/Cabinet"))
-// import Register from "./pages/Register/Register";
-const Register = lazy(() => import("./pages/Register/Register"))
-// import Login from "./pages/Login/Login";
-const Login = lazy(() => import("./pages/Login/Login"))
-// import Create from "./pages/Create/Create";
-const Create = lazy(() => import("./pages/Create/Create"))
-// import SuccesModal from "./components/SuccesModal/SuccesModal";
-const SuccesModal = lazy(() => import("./components/SuccesModal/SuccesModal"))
-
-
-// import Footer from "./components/Footer/Footer";
-const Footer = lazy(() => import("./components/Footer/Footer"))
-
+const Header = lazy(() => import("./components/Header/header"));
+const Homepage = lazy(() => import("./pages/Homepage/Homepage"));
+const AllAnnouncements = lazy(() => import("./pages/AllAnnouncements/AllAnnouncements"));
+const Cabinet = lazy(() => import("./pages/Cabinet/Cabinet"));
+const Register = lazy(() => import("./pages/Register/Register"));
+const Login = lazy(() => import("./pages/Login/Login"));
+const Create = lazy(() => import("./pages/Create/Create"));
+const SuccesModal = lazy(() => import("./components/SuccesModal/SuccesModal"));
+const Footer = lazy(() => import("./components/Footer/Footer"));
+const Favorite = lazy(() => import("./pages/Favorites/Favorites"))
 
 const App = () => {
-  const [users, setUsers] = useState([]);
   const [selectedType, setSelectedType] = useState("");
-
   const [profile, setProfile] = useState(null);
-
-
-
-  // useEffect(() => {
-  //   const user = localStorage.getItem("user");
-  //   localStorage.setItem("user", user);
-  //
-  // }, []);
-
+  const [favorites, setFavorites] = useState([]);
 
   const register = (e) => {
     e.preventDefault();
-
     const formData = new FormData(e.target);
     const name = formData.get("name");
     const surname = formData.get("surname");
@@ -59,90 +31,47 @@ const App = () => {
     const age = formData.get("age");
     const password = formData.get("password");
     const reppassword = formData.get("reppassword");
-
     if (password !== reppassword) {
       alert("Паролі не співпадають");
       return;
     }
-
-    const newUser = {
-      name,
-      surname,
-      email,
-      phone,
-      age,
-      password,
-    };
-
+    const newUser = { name, surname, email, phone, age, password };
     localStorage.setItem("user", JSON.stringify(newUser));
-
     setProfile(newUser);
-    pushProfileAPI(newUser);
-
-
-    console.log("Реєстрація успішна:", newUser);
-
-    const modal = document.querySelector(".succesModal")
-
-    modal.style.display = "flex";
-
-    setTimeout(() => {
-      const modal = document.querySelector(".succesModal")
-      modal.style.display = "none"
-    }, 2500)
-
-    document.location.href = "/"
-    e.target.reset()
-
+    document.location.href = "/";
+    e.target.reset();
   };
 
-
   const login = (e) => {
-    e.preventDefault()
-
-
-    const formData = e.target
-    const email = formData.email.value
-    const password = formData.password.value
-
-
-
+    e.preventDefault();
+    const formData = e.target;
+    const email = formData.email.value;
+    const password = formData.password.value;
     getProfileAPI(email).then((data) => {
       localStorage.setItem("user", JSON.stringify(data));
-      document.location.href = "/"
-    })
-
-
-
-  }
-
+      setProfile(data);
+      document.location.href = "/";
+    });
+  };
 
   const leave = () => {
-    localStorage.removeItem("user")
-    console.log("LOGOUT");
-  }
-
+    localStorage.removeItem("user");
+    setProfile(null);
+  };
 
   const selectType = (e) => {
     document.querySelectorAll(".createform__button").forEach((element) => {
-      element.style.backgroundColor = "#fff"
-      element.style.color = "#000"
-    })
-    // присваивание
-    e.target.style.backgroundColor = "#266294"
-    e.target.style.color = "#fff"
-    setSelectedType(e.target.textContent)
-  }
+      element.style.backgroundColor = "#fff";
+      element.style.color = "#000";
+    });
+    e.target.style.backgroundColor = "#266294";
+    e.target.style.color = "#fff";
+    setSelectedType(e.target.textContent);
+  };
 
   const createAnnouncement = (e) => {
-    e.preventDefault()
-
-    const types = document.querySelectorAll(".createform__button")
-    types.forEach((element) => {
-      console.log(element)
-    })
-
-    const data = e.target
+    e.preventDefault();
+    const data = e.target;
     const announcement = {
       country: data.country.value,
       city: data.city.value,
@@ -155,27 +84,64 @@ const App = () => {
       description: data.description.value,
       image: data.image.value,
       email: data.email.value
-    }
-    console.log(announcement)
-    console.log(selectedType)
-    postAnnouncementAPI(announcement)
-    document.location.href = "/announcements"
-  }
+    };
+    postAnnouncementAPI(announcement);
+    document.location.href = "/announcements";
+  };
 
+  const favorite = async (e, announcementId) => {
+    e.preventDefault();
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user) {
+      alert("Спочатку увійдіть в акаунт");
+      return;
+    }
+    const existingFavorites = await getFavorites();
+    const alreadyAdded = existingFavorites.some(fav => fav.announcementId === announcementId);
+    if (alreadyAdded) {
+      alert("Вже додано до обраного");
+      return;
+    }
+    await addToFavorites(user.id, { announcementId });
+    const updatedFavorites = await getFavorites();
+    setFavorites(updatedFavorites);
+    alert("Додано до обраного");
+  };
+
+  const getFavorites = async () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user) return [];
+    try {
+      const res = await fetch(`https://6882916c21fa24876a9b3c72.mockapi.io/users/${user.id}`);
+      if (!res.ok) throw new Error("Не вдалося отримати користувача");
+      const data = await res.json();
+      return Array.isArray(data.favorites) ? data.favorites : [];
+    } catch (error) {
+      console.error(error);
+      return [];
+    }
+  };
+
+  useEffect(() => {
+    const loadFavorites = async () => {
+      const favs = await getFavorites();
+      setFavorites(favs);
+    };
+    loadFavorites();
+  }, []);
 
   return (
     <div className="App">
       <div className="wrapper">
         <Header />
-
         <Routes>
           <Route path="/" element={<Homepage />} />
-          <Route path="/announcements" element={<AllAnnouncements />} />
-          <Route path="/cabinet" element={<Cabinet data={profile} />} leave={leave} />
+          <Route path="/announcements" element={<AllAnnouncements favorite={favorite} />} />
+          <Route path="/cabinet" element={<Cabinet data={profile} leave={leave}/>} />
           <Route path="/register" element={<Register register={register} />} />
           <Route path="/login" element={<Login login={login} />} />
           <Route path="/create" element={<Create createAnnouncement={createAnnouncement} selectType={selectType} />} />
-
+           <Route path="/favorites" element={<Favorite favorites={favorites} />} />
         </Routes>
         <SuccesModal />
         <Footer />
