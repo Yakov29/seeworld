@@ -2,8 +2,6 @@ import React, { useEffect, useState, lazy } from "react";
 import { Routes, Route } from "react-router-dom";
 import { postAnnouncementAPI } from "./api/postAnnouncementAPI";
 import { getProfileAPI } from "./api/getProfileAPI";
-import { addToFavorites } from "./api/addToFavorites";
-import Favorites from "./pages/Favorites/Favorites";
 
 const Header = lazy(() => import("./components/Header/header"));
 const Homepage = lazy(() => import("./pages/Homepage/Homepage"));
@@ -14,13 +12,14 @@ const Login = lazy(() => import("./pages/Login/Login"));
 const Create = lazy(() => import("./pages/Create/Create"));
 const SuccesModal = lazy(() => import("./components/SuccesModal/SuccesModal"));
 const Footer = lazy(() => import("./components/Footer/Footer"));
-const Favorite = lazy(() => import("./pages/Favorites/Favorites"))
+const Favorite = lazy(() => import("./pages/Favorites/Favorites"));
 
 const App = () => {
   const [selectedType, setSelectedType] = useState("");
   const [profile, setProfile] = useState(null);
   const [favorites, setFavorites] = useState([]);
 
+  // Регистрация
   const register = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -42,6 +41,7 @@ const App = () => {
     e.target.reset();
   };
 
+  // Логин
   const login = (e) => {
     e.preventDefault();
     const formData = e.target;
@@ -54,21 +54,24 @@ const App = () => {
     });
   };
 
+  // Выход
   const leave = () => {
     localStorage.removeItem("user");
     setProfile(null);
   };
 
+  // Выбор типа при создании объявления
   const selectType = (e) => {
-    document.querySelectorAll(".createform__button").forEach((element) => {
-      element.style.backgroundColor = "#fff";
-      element.style.color = "#000";
+    document.querySelectorAll(".createform__button").forEach((el) => {
+      el.style.backgroundColor = "#fff";
+      el.style.color = "#000";
     });
     e.target.style.backgroundColor = "#266294";
     e.target.style.color = "#fff";
     setSelectedType(e.target.textContent);
   };
 
+  // Создание объявления
   const createAnnouncement = (e) => {
     e.preventDefault();
     const data = e.target;
@@ -89,25 +92,27 @@ const App = () => {
     document.location.href = "/announcements";
   };
 
-  const favorite = async (e, announcementId) => {
+  // Добавление/удаление из избранного
+  const favorite = (e, announcementId) => {
     e.preventDefault();
     const user = JSON.parse(localStorage.getItem("user"));
     if (!user) {
       alert("Спочатку увійдіть в акаунт");
       return;
     }
-    const existingFavorites = await getFavorites();
+    const existingFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
     const alreadyAdded = existingFavorites.some(fav => fav.announcementId === announcementId);
+    let updatedFavorites;
     if (alreadyAdded) {
-      alert("Вже додано до обраного");
-      return;
+      updatedFavorites = existingFavorites.filter(fav => fav.announcementId !== announcementId);
+    } else {
+      updatedFavorites = [...existingFavorites, { announcementId }];
     }
-    await addToFavorites(user.id, { announcementId });
-    const updatedFavorites = await getFavorites();
+    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
     setFavorites(updatedFavorites);
-    alert("Додано до обраного");
   };
 
+  // Получение избранного при загрузке
   const getFavorites = async () => {
     const user = JSON.parse(localStorage.getItem("user"));
     if (!user) return [];
@@ -128,12 +133,16 @@ const App = () => {
       setFavorites(favs);
     };
     loadFavorites();
+
+    // Загрузка профиля из localStorage
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    if (storedUser) setProfile(storedUser);
   }, []);
 
   return (
     <div className="App">
       <div className="wrapper">
-        <Header />
+        <Header profile={profile} leave={leave} />
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/announcements" element={<AllAnnouncements favorite={favorite} />} />
@@ -141,7 +150,7 @@ const App = () => {
           <Route path="/register" element={<Register register={register} />} />
           <Route path="/login" element={<Login login={login} />} />
           <Route path="/create" element={<Create createAnnouncement={createAnnouncement} selectType={selectType} />} />
-           <Route path="/favorites" element={<Favorite favorites={favorites} />} />
+          <Route path="/favorites" element={<Favorite favorites={favorites} favorite={favorite} />} />
         </Routes>
         <SuccesModal />
         <Footer />

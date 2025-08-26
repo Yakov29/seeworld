@@ -1,42 +1,21 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./header.css";
 import logo from "../../logo.svg";
 import Container from "../Container/Container";
 import { FaRegHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-
-const Header = () => {
-
-  useEffect(() => {
-    const user = localStorage.getItem("user");
-    const headerButton = document.querySelector(".header__button")
-    const headerAnnouncements = document.querySelector(".newButton")
-    console.log(user)
-
-    console.log(headerAnnouncements)
-
-    if (headerAnnouncements !== null) {
-
-      if (user !== null) {
-        headerButton.style.display = "none"
-      }
-    }
-
-
-
-  }, []);
-
+const Header = ({ profile }) => {
   return (
     <header className="header">
       <Container>
         <img src={logo} alt="Logo" />
+
         <ul className="header__list">
           <li className="header__item">
             <Link to="/" className="header__link">
               Головна
             </Link>
-
           </li>
           <li className="header__item">
             <Link to="/announcements" className="header__link">
@@ -49,7 +28,7 @@ const Header = () => {
             </Link>
           </li>
           <li className="header__item">
-            <Link to="" className="header__link">
+            <Link to="/favorites" className="header__link">
               <FaRegHeart />
             </Link>
           </li>
@@ -58,14 +37,20 @@ const Header = () => {
               <img src="./images/user.svg" alt="" />
             </Link>
           </li>
-
           <li className="header__item">
             <Link to="/cabinet" id="cabinet" className="header__link">
               Особистий кабінет
             </Link>
           </li>
+
+          {!profile && (
+            <li className="header__item">
+              <Link className="header__button" to="/register">
+                Зареєструватись
+              </Link>
+            </li>
+          )}
         </ul>
-        <Link className="header__button" to="/register">Зареєструватись</Link>
       </Container>
     </header>
   );

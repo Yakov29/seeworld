@@ -1,50 +1,77 @@
 import React, { useEffect, useState } from "react";
 import Container from "../Container/Container";
-import "./FavoritesList.css"
+import "./FavoritesList.css";
 
-const FavoritesList = ({ favorites }) => {
+const FavoritesList = () => {
   const [announcements, setAnnouncements] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchAnnouncements = async () => {
-      if (!favorites || favorites.length === 0) {
+      const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+      if (favorites.length === 0) {
         setAnnouncements([]);
+        setLoading(false);
         return;
       }
-
       try {
-        const promises = favorites.map(fav =>
-          fetch(`https://6882916c21fa24876a9b3c72.mockapi.io/announcement/${fav.announcementId}`)
+        const uniqueFavorites = [...new Set(favorites.map(f => f.announcementId))];
+        const promises = uniqueFavorites.map(id =>
+          fetch(`https://6882916c21fa24876a9b3c72.mockapi.io/announcement/${id}`)
             .then(res => res.json())
         );
-
         const results = await Promise.all(promises);
         setAnnouncements(results);
       } catch (error) {
         console.error("Помилка при отриманні об'яв:", error);
+      } finally {
+        setLoading(false);
       }
     };
-
     fetchAnnouncements();
-  }, [favorites]);
+  }, []);
+
+  const removeFromFavorites = (id) => {
+    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    const updated = favorites.filter(f => f.announcementId !== id);
+    localStorage.setItem("favorites", JSON.stringify(updated));
+    setAnnouncements(prev => prev.filter(item => item.id !== id));
+  };
 
   return (
-   <section className="favorites">
-  <Container>
-    <ul className="favorites__list">
-      {announcements.map(item => (
-        <li key={item.id} className="favorites__item">
-          <img className="favorites__image" src={item.image || ""} alt={item.description || ""} />
-          <div className="favorites__info">
-            <div className="favorites__info-item">{item.country}, {item.city}, {item.street}</div>
-            <div className="favorites__info-item">Тип: {item.type}</div>
-          </div>
-        </li>
-      ))}
-    </ul>
-  </Container>
-</section>
-
+    <section className="favorites">
+      <Container>
+        {loading ? (
+          <p className="favorites__loading">Завантаження...</p>
+        ) : announcements.length === 0 ? (
+          <p className="favorites__empty">У вас поки немає об'яв у вибраному.</p>
+        ) : (
+          <ul className="favorites__list">
+            {announcements.map(item => (
+              <li key={item.id} className="favorites__item">
+                <img
+                  className="favorites__image"
+                  src={item.image || "https://via.placeholder.com/300x200?text=No+Image"}
+                  alt={item.description || "Без опису"}
+                />
+                <div className="favorites__info">
+                  <div className="favorites__info-item">
+                    {item.country}, {item.city}, {item.street}
+                  </div>
+                  <div className="favorites__info-item">Тип: {item.type}</div>
+                </div>
+                <button
+                  className="favorites__remove"
+                  onClick={() => removeFromFavorites(item.id)}
+                >
+                  ✕
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
+      </Container>
+    </section>
   );
 };
 
