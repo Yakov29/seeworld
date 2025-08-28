@@ -42,3 +42,22 @@
 .newButton{
     display: none;
 } */
+
+
+@media (min-width: 320px) and (max-width: 768px) {
+
+    .hero__title{
+        font-size: 48;
+    }
+.hero__buttons{
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+   }
+
+   .hero__button:last-child{
+    margin-left: 0px;
+}
+
+  
+}

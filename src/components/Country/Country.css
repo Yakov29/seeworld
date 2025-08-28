@@ -1,32 +1,57 @@
-.country{
+.country {
     padding-top: 32px;
     padding-bottom: 46px;
 }
 
-.country__list{
+.country__list {
     display: flex;
     gap: 20px;
 }
 
-.country__name{
+.country__name {
     font-size: 32px;
     margin-bottom: 24px;
 }
 
-.country__section-title{
+.country__section-title {
     font-size: 32px
 }
 
-.country__title{
+.country__title {
     font-weight: bold;
-   
+
 }
 
-.country__votes{
+.country__votes {
     font-weight: bold;
 }
 
-.country__image{
+.country__image {
     width: 413px;
-     margin-bottom: 16px;
+    margin-bottom: 16px;
+}
+
+
+@media (min-width: 320px) and (max-width: 1199px) {
+
+    .country__section-title {
+        text-align: center;
+    }
+
+    .country__name{
+        text-align: center;
+    }
+
+    .country__list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+
+    }
+
+    .country__item {
+        width: 345px;
+    }
+
 }

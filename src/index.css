@@ -18,6 +18,16 @@ body {
 
 }
 
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
 img, picture, video, canvas, svg {
   display: block;
   max-width: 100%;

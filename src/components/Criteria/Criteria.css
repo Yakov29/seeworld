@@ -1,25 +1,52 @@
-.criteria{
+.criteria {
     padding-top: 52px;
     padding-bottom: 68px;
 }
-.criteria__title{
+
+.criteria__title {
     color: #111111;
     font-size: 40px;
 }
 
-.criteria__list{
+.criteria__list {
     display: flex;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     width: 100%;
     gap: 20px;
 }
 
-.criteria__description{
+.criteria__description {
     text-align: center;
     font-size: 32px;
     font-weight: bold;
 }
+
 /* 
 .criteria__item{
     width: 500px;
 } */
+
+
+
+@media (min-width: 320px) and (max-width: 1199px) {
+
+    .criteria__title{
+        text-align: center;
+    }
+
+    .criteria__list {
+        justify-content: center;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin-top: 32px;
+
+    }
+
+    .criteria__item {
+        max-width: 345px;
+        width: 100%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {}

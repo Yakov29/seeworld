@@ -25,3 +25,21 @@
     object-fit: cover;
 
 }
+
+
+
+@media (min-width: 320px) and (max-width: 1199px) {
+
+    .announcement__title-section{
+        text-align: center;
+    }
+   .announcement__list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+   }
+
+   .announcement__item{
+    max-width: 345px;
+   }
+}
