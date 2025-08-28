@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkseeworld=self.webpackChunkseeworld||[]).push([[427],{728:(e,s,a)=>{a.d(s,{A:()=>c});a(43);const c=a.p+"static/media/logo.20ce93235aabcbb3a1f4362839dd455a.svg"},794:(e,s,a)=>{a.d(s,{A:()=>d});var c=a(579);const d=e=>{let{children:s}=e;return(0,c.jsx)("div",{className:"container",children:s})}}}]);
+//# sourceMappingURL=427.13524cde.chunk.js.map
