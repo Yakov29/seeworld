@@ -1,4 +1,3 @@
-import React from "react";
 import "./Criteria.css";
 import Container from "../Container/Container";
 import {criteria} from "../../data/criteria";

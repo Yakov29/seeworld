@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./Cabinet.css";
 import Container from "../../components/Container/Container";
 

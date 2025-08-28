@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Container from "../Container/Container";
-import { Link } from "react-router-dom";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { getAnnouncementAPI } from "../../api/getAnnouncementAPI";
 import "./SuperEco.css";

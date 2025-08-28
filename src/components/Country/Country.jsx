@@ -1,4 +1,3 @@
-import React from "react";
 import "./Country.css";
 import ConturyItem from "./CountryItem/CountryItem";
 import Container from "../Container/Container";

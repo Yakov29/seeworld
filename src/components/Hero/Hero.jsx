@@ -1,4 +1,3 @@
-import React from "react";
 import "./Hero.css";
 import Container from "../Container/Container";
 import { Link } from "react-router-dom";

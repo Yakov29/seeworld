@@ -1,4 +1,4 @@
-import React, { useEffect, useState, lazy } from "react";
+import { useEffect, useState, lazy } from "react";
 import { Routes, Route } from "react-router-dom";
 import { postAnnouncementAPI } from "./api/postAnnouncementAPI";
 import { getProfileAPI } from "./api/getProfileAPI";
@@ -19,7 +19,6 @@ const App = () => {
   const [profile, setProfile] = useState(null);
   const [favorites, setFavorites] = useState([]);
 
-  // Регистрация
   const register = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
