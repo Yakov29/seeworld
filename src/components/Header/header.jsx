@@ -43,7 +43,7 @@ const Header = ({ profile }) => {
         </button>
         <div className={`mobile-overlay ${isOpen ? "show" : ""}`} onClick={closeMenu}></div>
         <nav className={`mobile-menu ${isOpen ? "open" : ""}`}>
-          <ul>
+          <ul className="mobile-menu__list">
             <li><Link to="/" onClick={closeMenu}>Головна</Link></li>
             <li><Link to="/announcements" onClick={closeMenu}>Всі оголошення</Link></li>
             <li><Link to="/create" onClick={closeMenu}>Додати оголошення</Link></li>

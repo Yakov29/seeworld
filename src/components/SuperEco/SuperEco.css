@@ -1,15 +1,17 @@
 .supereco {
-padding-bottom: 50px;
+    padding-bottom: 50px;
     padding-top: 50px;
 }
 
 .allannouncements__title {
     font-size: 36px;
     font-weight: bold;
+    text-align: center
 }
 
 .supereco__title {
     font-weight: 24px;
+
 }
 
 .supereco__content {
@@ -28,6 +30,7 @@ padding-bottom: 50px;
 
 
 .supereco__list {
+    justify-content: center;
     margin-top: 32px;
     display: flex;
     flex-wrap: wrap;
@@ -69,6 +72,6 @@ padding-bottom: 50px;
 }
 
 
-.supereco__favorite{
+.supereco__favorite {
     margin-left: 12px;
 }

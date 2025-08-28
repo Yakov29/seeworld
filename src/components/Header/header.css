@@ -109,6 +109,7 @@ header .container{
   display: block;
 }
 
+
 @media (min-width: 320px) and (max-width: 1199px) {
   .header__list{
       display: none;
