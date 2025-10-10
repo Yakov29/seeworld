@@ -1,8 +1,10 @@
 import "./Criteria.css";
 import Container from "../Container/Container";
 import {criteria} from "../../data/criteria";
+import { useDispatch, useSelector } from "react-redux";
 
 const Criteria = () => {
+
   return (
     <section className="criteria">
       <Container>
