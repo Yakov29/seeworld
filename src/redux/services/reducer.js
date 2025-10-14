@@ -1,7 +1,10 @@
+import { createReducer } from "@reduxjs/toolkit";
 import criteria1 from "../../images/criteria1.png";
 import criteria2 from "../../images/criteria2.png";
 import criteria3 from "../../images/criteria3.png";
 import criteria4 from "../../images/criteria4.png";
+
+import { addService } from "./actions";
 
 const initialState = {
   services: [
@@ -24,13 +27,22 @@ const initialState = {
   ],
 };
 
-export const servicesReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case "addService" :
-        return {
-            ...state,
-            services: [...state.services, action.payload],
-        }
-    }
-    return state
-};
+// export const servicesReducer = (state = initialState, action) => {
+//     switch (action.type) {
+//         case "addService" :
+//         return {
+//             ...state,
+//             services: [...state.services, action.payload],
+//         }
+//     }
+//     return state
+// };
+
+export const servicesReducer = createReducer(initialState, (builder) => {
+  builder.addCase(addService, (state, action) => {
+    return {
+      ...state,
+      services: [...state.services, action.payload],
+    };
+  });
+});
