@@ -1,14 +1,42 @@
 import "./CreateForm.css";
 import Container from "../Container/Container";
-import { useDispatch, useSelector } from "react-redux";
-import { addService } from "../../redux/services/actions";
+import { useDispatch } from "react-redux";
+import { addAnnouncement } from "../../redux/thunks/thunk";
+import { useState } from "react";
 
-const CreateForm = ({ createAnnouncement, selectType }) => {
+const CreateForm = ({ selectType }) => {
   const dispatch = useDispatch();
-
-
+  const [formData, setFormData] = useState({
+    country: "",
+    city: "",
+    street: "",
+    type: "",
+    guests: 1,
+    bedrooms: 1,
+    beds: 1,
+    bathrooms: 1,
+    description: "",
+    image: "",
+    email: "",
+  });
 
   const user = localStorage.getItem("user");
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSelectType = (e) => {
+    selectType(e);
+    setFormData((prev) => ({ ...prev, type: e.target.textContent }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(addAnnouncement(formData));
+    // setFormData({ ...initial state... });
+  };
 
   if (user === null) {
     return (
@@ -23,7 +51,7 @@ const CreateForm = ({ createAnnouncement, selectType }) => {
       <section className="createform">
         <Container>
           <h2 className="createform__title">Створити оголошення</h2>
-          <form className="createform__form" onSubmit={dispatch(addService())}>
+          <form className="createform__form" onSubmit={handleSubmit}>
             <ul className="createform__list">
               <li className="createform__item">
                 <h4 className="cteateform__text">Ваша країна</h4>
@@ -32,6 +60,8 @@ const CreateForm = ({ createAnnouncement, selectType }) => {
                   className="createform__input"
                   name="country"
                   placeholder="Введіть назву країни"
+                  value={formData.country}
+                  onChange={handleChange}
                 />
               </li>
               <li className="createform__item">
@@ -41,6 +71,8 @@ const CreateForm = ({ createAnnouncement, selectType }) => {
                   className="createform__input"
                   name="city"
                   placeholder="Населений пункт "
+                  value={formData.city}
+                  onChange={handleChange}
                 />
               </li>
               <li className="createform__item">
@@ -50,6 +82,8 @@ const CreateForm = ({ createAnnouncement, selectType }) => {
                   className="createform__input"
                   name="street"
                   placeholder="Наприклад, вул. Олімпійська, Південний район"
+                  value={formData.street}
+                  onChange={handleChange}
                 />
               </li>
               <li className="createform__item">
@@ -57,28 +91,28 @@ const CreateForm = ({ createAnnouncement, selectType }) => {
                 <div className="cteateform__buttons">
                   <button
                     type="button"
-                    onClick={selectType}
+                    onClick={handleSelectType}
                     className="createform__button"
                   >
                     Будинок
                   </button>
                   <button
                     type="button"
-                    onClick={selectType}
+                    onClick={handleSelectType}
                     className="createform__button"
                   >
                     Квартира
                   </button>
                   <button
                     type="button"
-                    onClick={selectType}
+                    onClick={handleSelectType}
                     className="createform__button"
                   >
                     Кімната
                   </button>
                   <button
                     type="button"
-                    onClick={selectType}
+                    onClick={handleSelectType}
                     className="createform__button"
                   >
                     Студія
@@ -97,6 +131,8 @@ const CreateForm = ({ createAnnouncement, selectType }) => {
                       name="guests"
                       placeholder="1"
                       className="createform__more-input"
+                      value={formData.guests}
+                      onChange={handleChange}
                     />
                   </li>
                   <li className="createform__more-item">
@@ -106,6 +142,8 @@ const CreateForm = ({ createAnnouncement, selectType }) => {
                       name="bedrooms"
                       placeholder="1"
                       className="createform__more-input"
+                      value={formData.bedrooms}
+                      onChange={handleChange}
                     />
                   </li>
                   <li className="createform__more-item">
@@ -115,6 +153,8 @@ const CreateForm = ({ createAnnouncement, selectType }) => {
                       name="beds"
                       placeholder="1"
                       className="createform__more-input"
+                      value={formData.beds}
+                      onChange={handleChange}
                     />
                   </li>
                   <li className="createform__more-item">
@@ -124,6 +164,8 @@ const CreateForm = ({ createAnnouncement, selectType }) => {
                       name="bathrooms"
                       placeholder="1"
                       className="createform__more-input"
+                      value={formData.bathrooms}
+                      onChange={handleChange}
                     />
                   </li>
                 </ul>
@@ -135,6 +177,8 @@ const CreateForm = ({ createAnnouncement, selectType }) => {
                 <textarea
                   name="description"
                   className="createform__textarea"
+                  value={formData.description}
+                  onChange={handleChange}
                 ></textarea>
               </li>
               <li className="createform__item">
@@ -148,6 +192,8 @@ const CreateForm = ({ createAnnouncement, selectType }) => {
                   className="createform__input"
                   name="image"
                   placeholder="Посилання на фото"
+                  value={formData.image}
+                  onChange={handleChange}
                 />
               </li>
               <li className="createform__item">
@@ -159,6 +205,8 @@ const CreateForm = ({ createAnnouncement, selectType }) => {
                   className="createform__input"
                   name="email"
                   placeholder="Введіть email"
+                  value={formData.email}
+                  onChange={handleChange}
                 />
               </li>
               <button type="submit" className="createform__send">

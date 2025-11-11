@@ -1,18 +1,21 @@
 import { useEffect, useState } from "react";
 import Container from "../Container/Container";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
-import { getAnnouncementAPI } from "../../api/getAnnouncementAPI";
 import "./SuperEco.css";
+import { useSelector, useDispatch } from "react-redux";
+import { getAnnouncement } from "../../redux/thunks/thunk";
 
 const SuperEco = ({ favorite }) => {
-  const [announcements, setAnnouncements] = useState([]);
   const [favoritesIds, setFavoritesIds] = useState([]);
+  const dispatch = useDispatch();
+
+  const announcements = useSelector(state => state.announcementReducer.announcements);
 
   useEffect(() => {
-    getAnnouncementAPI().then((data) => {
-      setAnnouncements(data);
-    });
+    dispatch(getAnnouncement());
+  }, [dispatch]);
 
+  useEffect(() => {
     const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
     const ids = storedFavorites.map((f) => f.announcementId);
     setFavoritesIds(ids);
