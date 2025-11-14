@@ -6,6 +6,7 @@ import criteria4 from "../../images/criteria4.png";
 
 import { addService } from "./actions";
 import { getAnnouncement, addAnnouncement } from "../thunks/thunk";
+import { pushProfile } from "../thunks/thunk";
 
 const initialState = {
   services: [
@@ -26,9 +27,8 @@ const initialState = {
       name: "Кімнати",
     },
   ],
-  announcements: [
-
-  ]
+  announcements: [],
+  profile: {},
 };
 
 // export const servicesReducer = (state = initialState, action) => {
@@ -51,59 +51,53 @@ const initialState = {
 //   });
 // });
 
-
 export const servicesSlice = createSlice({
-  name: 'services',
+  name: "services",
   initialState,
-  reducers:{
+  reducers: {
     addService: (state, action) => {
-      state.services = [...state.services, action.payload]
-    }
-  }
-})
+      state.services = [...state.services, action.payload];
+    },
+  },
+});
 
-
-export const { addService: addServiceAction } = servicesSlice.actions
-export const servicesReducer = servicesSlice.reducer
-
-
+export const { addService: addServiceAction } = servicesSlice.actions;
+export const servicesReducer = servicesSlice.reducer;
 
 export const announcementSlice = createSlice({
-  name: 'announcements',
+  name: "announcements",
   initialState: {
     announcements: [],
     isLoading: false,
     error: null,
   },
-  reducers:{
-
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(getAnnouncement.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(getAnnouncement.fulfilled, (state, {payload}) => {
+      .addCase(getAnnouncement.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.announcements = payload
+        state.announcements = payload;
       })
       .addCase(getAnnouncement.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message;
-      })
-      .addCase(addAnnouncement.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(addAnnouncement.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
-        state.announcements.push(payload);
-      })
-      .addCase(addAnnouncement.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.error.message;
       });
-  }
-})
+  },
+});
 
+export const announcementReducer = announcementSlice.reducer;
 
-export const announcementReducer = announcementSlice.reducer
+export const profilesSlice = createSlice({
+  name: "profiles",
+  initialState,
+  reducers: {
+    pushProfile: (state, action) => {
+      state.profile = {
+        name: action.payload.name,
+      };
+    },
+  },
+});

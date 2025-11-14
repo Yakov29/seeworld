@@ -23,7 +23,6 @@ const SuperEco = ({ favorite }) => {
 
   const handleFavorite = (e, id) => {
     favorite(e, id);
-    // Обновляем локальный state чтобы иконка сразу менялась
     setFavoritesIds((prev) =>
       prev.includes(id) ? prev.filter((fId) => fId !== id) : [...prev, id]
     );

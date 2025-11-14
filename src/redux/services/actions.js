@@ -14,3 +14,10 @@ export const addService = createAction("addService", (title) => {
     },
   };
 });
+
+
+export const addProfile = createAction("addProfile", (profile) => {
+  return {
+    payload: profile
+  }
+})

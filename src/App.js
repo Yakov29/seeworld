@@ -2,10 +2,13 @@ import { useEffect, useState, lazy } from "react";
 import { Routes, Route } from "react-router-dom";
 import { postAnnouncementAPI } from "./api/postAnnouncementAPI";
 import { getProfileAPI } from "./api/getProfileAPI";
+import pushProfileAPI from "./api/pushProfileAPI";
 
 const Header = lazy(() => import("./components/Header/header"));
 const Homepage = lazy(() => import("./pages/Homepage/Homepage"));
-const AllAnnouncements = lazy(() => import("./pages/AllAnnouncements/AllAnnouncements"));
+const AllAnnouncements = lazy(() =>
+  import("./pages/AllAnnouncements/AllAnnouncements")
+);
 const Cabinet = lazy(() => import("./pages/Cabinet/Cabinet"));
 const Register = lazy(() => import("./pages/Register/Register"));
 const Login = lazy(() => import("./pages/Login/Login"));
@@ -35,31 +38,34 @@ const App = () => {
     }
     const newUser = { name, surname, email, phone, age, password };
     localStorage.setItem("user", JSON.stringify(newUser));
+    pushProfileAPI(newUser);
     setProfile(newUser);
     document.location.href = "/";
     e.target.reset();
   };
 
-  // Логин
   const login = (e) => {
     e.preventDefault();
     const formData = e.target;
     const email = formData.email.value;
     const password = formData.password.value;
     getProfileAPI(email).then((data) => {
-      localStorage.setItem("user", JSON.stringify(data));
-      setProfile(data);
-      document.location.href = "/";
+      if (data === "N") {
+        alert("Wrong Email");
+      } else {
+        console.log(data);
+        localStorage.setItem("user", JSON.stringify(data));
+        setProfile(data);
+        document.location.href = "/";
+      }
     });
   };
 
-  // Выход
   const leave = () => {
     localStorage.removeItem("user");
     setProfile(null);
   };
 
-  // Выбор типа при создании объявления
   const selectType = (e) => {
     document.querySelectorAll(".createform__button").forEach((el) => {
       el.style.backgroundColor = "#fff";
@@ -70,7 +76,6 @@ const App = () => {
     setSelectedType(e.target.textContent);
   };
 
-  // Создание объявления
   const createAnnouncement = (e) => {
     e.preventDefault();
     const data = e.target;
@@ -85,13 +90,12 @@ const App = () => {
       bathrooms: data.beds.value,
       description: data.description.value,
       image: data.image.value,
-      email: data.email.value
+      email: data.email.value,
     };
     postAnnouncementAPI(announcement);
     document.location.href = "/announcements";
   };
 
-  // Добавление/удаление из избранного
   const favorite = (e, announcementId) => {
     e.preventDefault();
     const user = JSON.parse(localStorage.getItem("user"));
@@ -99,11 +103,16 @@ const App = () => {
       alert("Спочатку увійдіть в акаунт");
       return;
     }
-    const existingFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
-    const alreadyAdded = existingFavorites.some(fav => fav.announcementId === announcementId);
+    const existingFavorites =
+      JSON.parse(localStorage.getItem("favorites")) || [];
+    const alreadyAdded = existingFavorites.some(
+      (fav) => fav.announcementId === announcementId
+    );
     let updatedFavorites;
     if (alreadyAdded) {
-      updatedFavorites = existingFavorites.filter(fav => fav.announcementId !== announcementId);
+      updatedFavorites = existingFavorites.filter(
+        (fav) => fav.announcementId !== announcementId
+      );
     } else {
       updatedFavorites = [...existingFavorites, { announcementId }];
     }
@@ -111,12 +120,13 @@ const App = () => {
     setFavorites(updatedFavorites);
   };
 
-  // Получение избранного при загрузке
   const getFavorites = async () => {
     const user = JSON.parse(localStorage.getItem("user"));
     if (!user) return [];
     try {
-      const res = await fetch(`https://6882916c21fa24876a9b3c72.mockapi.io/users/${user.id}`);
+      const res = await fetch(
+        `https://6882916c21fa24876a9b3c72.mockapi.io/users/${user.id}`
+      );
       if (!res.ok) throw new Error("Не вдалося отримати користувача");
       const data = await res.json();
       return Array.isArray(data.favorites) ? data.favorites : [];
@@ -133,7 +143,6 @@ const App = () => {
     };
     loadFavorites();
 
-    // Загрузка профиля из localStorage
     const storedUser = JSON.parse(localStorage.getItem("user"));
     if (storedUser) setProfile(storedUser);
   }, []);
@@ -144,12 +153,29 @@ const App = () => {
         <Header profile={profile} leave={leave} />
         <Routes>
           <Route path="/" element={<Homepage />} />
-          <Route path="/announcements" element={<AllAnnouncements favorite={favorite} />} />
-          <Route path="/cabinet" element={<Cabinet data={profile} leave={leave}/>} />
+          <Route
+            path="/announcements"
+            element={<AllAnnouncements favorite={favorite} />}
+          />
+          <Route
+            path="/cabinet"
+            element={<Cabinet data={profile} leave={leave} />}
+          />
           <Route path="/register" element={<Register register={register} />} />
           <Route path="/login" element={<Login login={login} />} />
-          <Route path="/create" element={<Create createAnnouncement={createAnnouncement} selectType={selectType} />} />
-          <Route path="/favorites" element={<Favorite favorites={favorites} favorite={favorite} />} />
+          <Route
+            path="/create"
+            element={
+              <Create
+                createAnnouncement={createAnnouncement}
+                selectType={selectType}
+              />
+            }
+          />
+          <Route
+            path="/favorites"
+            element={<Favorite favorites={favorites} favorite={favorite} />}
+          />
         </Routes>
         <SuccesModal />
         <Footer />
