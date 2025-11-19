@@ -1,4 +1,4 @@
-import { useEffect, useState } => "react";
+import { useEffect, useState } from "react";
 import Container from "../Container/Container";
 import "./FavoritesList.css";
 
