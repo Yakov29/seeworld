@@ -27,9 +27,9 @@
 }
 
 .country__image {
-    width: 100%; /* Make image responsive */
-    max-width: 413px; /* Limit max width */
-    height: auto; /* Maintain aspect ratio */
+    width: 100%;
+    max-width: 413px;
+    height: auto;
     margin-bottom: 16px;
 }
 
@@ -38,7 +38,7 @@
 }
 
 
-@media (max-width: 1199px) { /* Covers all screens up to 1199px */
+@media (max-width: 1199px) {
     .country__section-title {
         text-align: center;
     }
@@ -55,7 +55,7 @@
     }
 
     .country__item {
-        width: 100%; /* Take full width of parent */
-        max-width: 345px; /* Limit max width of item */
+        width: 100%;
+        max-width: 345px;
     }
 }

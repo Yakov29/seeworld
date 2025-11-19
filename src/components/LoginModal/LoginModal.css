@@ -1,24 +1,24 @@
 .login{
     text-align: center;
-    padding-top: 80px; /* Adjusted padding */
-    padding-bottom: 80px; /* Adjusted padding */
+    padding-top: 80px;
+    padding-bottom: 80px;
 }
 
 .login__form {
-    max-width: 400px; /* Limit form width */
-    margin: 0 auto; /* Center the form */
-    padding: 20px; /* Add padding to the form itself */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional: add a subtle shadow */
-    border-radius: 8px; /* Optional: round corners */
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
 }
 
 .login__title {
-    font-size: clamp(24px, 5vw, 32px); /* Responsive font size */
+    font-size: clamp(24px, 5vw, 32px);
     margin-bottom: 25px;
 }
 
 .login__description {
-    font-size: clamp(16px, 3vw, 18px); /* Responsive font size */
+    font-size: clamp(16px, 3vw, 18px);
     margin-bottom: 25px;
 }
 
@@ -38,7 +38,7 @@
     background: none;
     border: 3px solid #266294;
     color: #266294;
-    font-size: 16px; /* Ensure input font size is readable */
+    font-size: 16px;
 }
 
 .login__input::placeholder {
@@ -48,9 +48,9 @@
 .login__forgot{
     color:  #766F6F;
     text-decoration: underline;
-    font-size: clamp(14px, 3vw, 20px); /* Responsive font size */
-    display: block; /* Ensure it takes full width for centering */
-    margin-top: -10px; /* Adjust spacing */
+    font-size: clamp(14px, 3vw, 20px);
+    display: block;
+    margin-top: -10px;
 }
 
 .login__submit{
@@ -63,7 +63,7 @@
     height: 50px;
     border: none;
     color: white;
-    font-size: clamp(18px, 4vw, 20px); /* Responsive font size */
+    font-size: clamp(18px, 4vw, 20px);
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s;
@@ -74,15 +74,15 @@
 }
 
 .login__service__title{
-    font-size: clamp(16px, 3vw, 20px); /* Responsive font size */
+    font-size: clamp(16px, 3vw, 20px);
     font-weight: bold;
     margin-top: 25px;
 }
 
 .login__service__list{
     display: flex;
-    flex-wrap: wrap; /* Allow icons to wrap */
-    gap: 15px; /* Adjusted gap */
+    flex-wrap: wrap;
+    gap: 15px;
     justify-content: center;
     margin-top: 25px;
 }
@@ -90,26 +90,25 @@
 .login__service__image{
     width: 40px;
     height: 40px;
-    border-radius: 50%; /* Use 50% for perfect circle */
+    border-radius: 50%;
     border: 2px solid #266294;
     padding: 5px;
     box-sizing: border-box;
 }
 
 .login__noaccount__title{
-    font-size: clamp(16px, 3vw, 20px); /* Responsive font size */
+    font-size: clamp(16px, 3vw, 20px);
     margin-top: 25px;
-    margin-bottom: 10px; /* Adjusted spacing */
+    margin-bottom: 10px;
 }
 
 .login__noaccount__link{
-    font-size: clamp(16px, 3vw, 20px); /* Responsive font size */
+    font-size: clamp(16px, 3vw, 20px);
     color: #766F6F;
     text-decoration: underline;
-    display: block; /* Ensure it takes full width for centering */
+    display: block;
 }
 
-/* Media queries for smaller adjustments */
 @media (max-width: 480px) {
     .login__form {
         padding: 15px;

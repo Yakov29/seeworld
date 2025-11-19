@@ -19,7 +19,6 @@ const Cabinet = ({ leave }) => {
                     setIsLoggedIn(true);
                 }
             } catch (error) {
-                console.error("Помилка при розборі даних користувача:", error);
                 setIsLoggedIn(false);
             }
         } else {

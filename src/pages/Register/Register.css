@@ -1,24 +1,24 @@
 .register{
-    padding-top: 80px; /* Adjusted padding */
-    padding-bottom: 80px; /* Adjusted padding */
+    padding-top: 80px;
+    padding-bottom: 80px;
     text-align: center;
 }
 
 .register__form {
-    max-width: 400px; /* Limit form width */
-    margin: 0 auto; /* Center the form */
-    padding: 20px; /* Add padding to the form itself */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional: add a subtle shadow */
-    border-radius: 8px; /* Optional: round corners */
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
 }
 
 .register__title{
-    font-size: clamp(24px, 5vw, 32px); /* Responsive font size */
+    font-size: clamp(24px, 5vw, 32px);
     margin-bottom: 25px;
 }
 
 .register__description{
-    font-size: clamp(16px, 3vw, 20px); /* Responsive font size */
+    font-size: clamp(16px, 3vw, 20px);
     margin-bottom: 25px;
 }
 
@@ -44,14 +44,14 @@
     padding-left: 16px;
     background: none;
     border: 3px solid  #266294;
-    box-sizing: border-box; /* Ensure padding is included in width */
-    font-size: 16px; /* Ensure input font size is readable */
+    box-sizing: border-box;
+    font-size: 16px;
 }
 
 .register__password{
     margin-bottom: 16px;
     text-align: left;
-    font-size: clamp(18px, 4vw, 24px); /* Responsive font size */
+    font-size: clamp(18px, 4vw, 24px);
 }
 
 .register__button{
@@ -64,8 +64,8 @@
     font-weight: bold;
     color: #ffffff;
     cursor: pointer;
-    box-sizing: border-box; /* Ensure padding is included in width */
-    font-size: clamp(18px, 4vw, 20px); /* Responsive font size */
+    box-sizing: border-box;
+    font-size: clamp(18px, 4vw, 20px);
     transition: background-color 0.3s;
 }
 
@@ -74,19 +74,18 @@
 }
 
 .register__noaccount__title{
-    font-size: clamp(16px, 3vw, 20px); /* Responsive font size */
-    margin-bottom: 10px; /* Adjusted spacing */
+    font-size: clamp(16px, 3vw, 20px);
+    margin-bottom: 10px;
     margin-top: 25px;
 }
 
 .register__noaccount__link{
-    font-size: clamp(16px, 3vw, 20px); /* Responsive font size */
+    font-size: clamp(16px, 3vw, 20px);
     color: #766F6F;
     text-decoration: underline;
-    display: block; /* Ensure it takes full width for centering */
+    display: block;
 }
 
-/* Media queries for smaller adjustments */
 @media (max-width: 480px) {
     .register__form {
         padding: 15px;

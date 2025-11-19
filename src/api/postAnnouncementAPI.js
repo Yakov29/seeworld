@@ -10,6 +10,5 @@ export const postAnnouncementAPI = async (data) => {
 
     return await response.json();
   } catch (error) {
-    // Handle error appropriately, e.g., throw it or return a specific error object
   }
 };

@@ -2,17 +2,17 @@
     max-width: 1280px;
     margin-left: auto;
     margin-right: auto;
-    padding: 0 15px; /* Default padding for smaller screens */
+    padding: 0 15px;
 }
 
 @media (min-width: 768px) {
     .container {
-        padding: 0 20px; /* Adjust padding for tablets */
+        padding: 0 20px;
     }
 }
 
 @media (min-width: 1200px) {
     .container {
-        padding: 0; /* Remove padding for very large screens if content fills 1280px */
+        padding: 0;
     }
 }

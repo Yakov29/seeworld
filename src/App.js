@@ -53,7 +53,6 @@ const App = () => {
       if (data === null) {
         alert("Неправильный Email или пользователь не найден");
       } else {
-        console.log(data);
         localStorage.setItem("user", JSON.stringify(data));
         setProfile(data);
         navigate("/");
@@ -101,13 +100,11 @@ const App = () => {
         `https://6882916c21fa24876a9b3c72.mockapi.io/users/${user.id}`
       );
       if (!res.ok) {
-        console.error("Не вдалося отримати користувача");
         return [];
       }
       const data = await res.json();
       return Array.isArray(data.favorites) ? data.favorites : [];
     } catch (error) {
-      console.error(error);
       return [];
     }
   };

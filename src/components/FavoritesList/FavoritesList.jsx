@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } => "react";
 import Container from "../Container/Container";
 import "./FavoritesList.css";
 
@@ -23,7 +23,6 @@ const FavoritesList = () => {
         const results = await Promise.all(promises);
         setAnnouncements(results);
       } catch (error) {
-        // Handle error appropriately, e.g., display a message to the user
       } finally {
         setLoading(false);
       }
