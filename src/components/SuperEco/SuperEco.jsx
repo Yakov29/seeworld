@@ -5,11 +5,27 @@ import "./SuperEco.css";
 import { useSelector, useDispatch } from "react-redux";
 import { getAnnouncement } from "../../redux/thunks/thunk";
 
-const SuperEco = ({ favorite }) => {
+const SuperEco = ({ favorite, profile }) => {
   const [favoritesIds, setFavoritesIds] = useState([]);
   const dispatch = useDispatch();
+  const heartFavorite = document.querySelector(".supereco__favorite");
 
-  const announcements = useSelector(state => state.announcementReducer.announcements);
+  const 
+
+console.log(heartFavorite)
+  useEffect(() => {
+    if (profile === null) {
+      if (heartFavorite !== null) {
+        heartFavorite.style.display = "none";
+      }
+    } else {
+      heartFavorite.style.display = "block";
+    }
+  });
+
+  const announcements = useSelector(
+    (state) => state.announcementReducer.announcements
+  );
 
   useEffect(() => {
     dispatch(getAnnouncement());
@@ -48,7 +64,11 @@ const SuperEco = ({ favorite }) => {
                 onClick={(e) => handleFavorite(e, element.id)}
                 className="supereco__favorite"
               >
-                {favoritesIds.includes(element.id) ? <FaHeart /> : <FaRegHeart />}
+                {favoritesIds.includes(element.id) ? (
+                  <FaHeart />
+                ) : (
+                  <FaRegHeart />
+                )}
               </button>
               <p className="supereco__id">ID: {element.id}</p>
             </li>

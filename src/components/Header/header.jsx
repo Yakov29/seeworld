@@ -25,7 +25,7 @@ const Header = ({ profile }) => {
           <li className="header__item addannouncement">
             <Link to="/create" className="header__link">Додати оголошення</Link>
           </li>
-          <li className="header__item">
+          <li className="header__item heart">
             <Link to="/favorites" className="header__link"><FaRegHeart /></Link>
           </li>
           <li className="header__item">

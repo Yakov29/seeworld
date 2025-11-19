@@ -13,5 +13,6 @@ export const addAnnouncement = createAsyncThunk("announcements/addAnnouncement",
 
 export const pushProfile = createAsyncThunk("profiles/pushProfile", async (profileData) => {
   const response = await pushProfileAPI(profileData)
+  console.log(response)
   return response;
 })

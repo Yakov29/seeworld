@@ -1,5 +1,5 @@
 import { useEffect, useState, lazy } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useFetcher } from "react-router-dom";
 import { postAnnouncementAPI } from "./api/postAnnouncementAPI";
 import { getProfileAPI } from "./api/getProfileAPI";
 import pushProfileAPI from "./api/pushProfileAPI";
@@ -22,6 +22,20 @@ const App = () => {
   const [profile, setProfile] = useState(null);
   const [favorites, setFavorites] = useState([]);
 
+  useEffect(() => {
+    const heartIcon = document.querySelector(".heart");
+    // const heartFavorite = document.querySelector(".")
+    // if (document.location.href === "/announcements") {
+      const heartFavorite = document.querySelector(".supereco__favorite");
+    // }
+
+    if (profile === null) {
+      heartIcon.style.display = "none";
+    } else {
+      heartIcon.style.display = "block";
+    }
+  });
+
   const register = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -40,8 +54,9 @@ const App = () => {
     localStorage.setItem("user", JSON.stringify(newUser));
     pushProfileAPI(newUser);
     setProfile(newUser);
-    document.location.href = "/";
     e.target.reset();
+
+    // document.location.href = "/";
   };
 
   const login = (e) => {
@@ -155,7 +170,7 @@ const App = () => {
           <Route path="/" element={<Homepage />} />
           <Route
             path="/announcements"
-            element={<AllAnnouncements favorite={favorite} />}
+            element={<AllAnnouncements favorite={favorite} profile={profile}/>}
           />
           <Route
             path="/cabinet"

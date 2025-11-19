@@ -31,6 +31,8 @@ const Cabinet = ({ leave }) => {
 
     const clear = () => {
         localStorage.removeItem("user");
+                localStorage.removeItem("favorites");
+
         document.location.href = "/"
     }
 
