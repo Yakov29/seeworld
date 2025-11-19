@@ -1,6 +1,12 @@
+import { useEffect } from "react";
 import CreateForm from "../../components/CreateForm/CreateForm";
 
-const Create = () => {
+const Create = ({profile}) => {
+    useEffect(() => {
+        if (profile === null) {
+            document.location.href = "/login"
+        }
+    })
     return (
         <main>
             <CreateForm />

@@ -19,6 +19,15 @@ const Favorite = lazy(() => import("./pages/Favorites/Favorites"));
 const App = () => {
   const [profile, setProfile] = useState(null);
   const [favorites, setFavorites] = useState([]);
+
+  useEffect(() => {
+    const hearerHeart = document.querySelector(".heart")
+    if (profile === null) {
+      hearerHeart.style.display = "none"
+    } else {
+      hearerHeart.style.display = "block"
+    }
+  })
   const navigate = useNavigate();
 
   const register = (e) => {
@@ -51,7 +60,7 @@ const App = () => {
 
     getProfileAPI(email).then((data) => {
       if (data === null) {
-        alert("Неправильный Email или пользователь не найден");
+        alert("Email або пользователь не знайден");
       } else {
         localStorage.setItem("user", JSON.stringify(data));
         setProfile(data);
@@ -139,7 +148,7 @@ const App = () => {
           <Route
             path="/create"
             element={
-              <Create />
+              <Create profile={profile}/>
             }
           />
           <Route
