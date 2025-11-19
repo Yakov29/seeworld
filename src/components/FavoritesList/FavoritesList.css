@@ -16,15 +16,15 @@
 .favorites__item {
   position: relative;
   overflow: hidden;
-  max-width: 414px;
+  max-width: 414px; /* Default max-width for larger screens */
   width: 100%;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Add subtle shadow */
+  border-radius: 8px; /* Rounded corners */
 }
-
-
 
 .favorites__image {
   width: 100%;
-  height: 220px;
+  height: 220px; /* Fixed height, consider making it more flexible */
   object-fit: cover;
   display: block;
 }
@@ -36,7 +36,7 @@
 .favorites__info-item {
   margin-bottom: 6px;
   font-weight: 600;
-  font-size: 15px;
+  font-size: clamp(14px, 3vw, 15px); /* Responsive font size */
   color: #333;
 }
 
@@ -61,10 +61,21 @@
   background: rgba(255,0,0,0.8);
 }
 
+/* Media Queries for responsiveness */
+@media (max-width: 1200px) {
+    .favorites__item {
+        max-width: 350px; /* Adjust max-width for medium screens */
+    }
+}
+
 @media (max-width: 768px) {
   .favorites {
     padding-top: 100px;
     padding-bottom: 50px;
+  }
+
+  .favorites__item {
+      max-width: 90%; /* Allow items to take more width on smaller screens */
   }
 
   .favorites__image {
@@ -80,6 +91,10 @@
   .favorites {
     padding-top: 80px;
     padding-bottom: 40px;
+  }
+
+  .favorites__item {
+      max-width: 100%; /* Full width on very small screens */
   }
 
   .favorites__image {

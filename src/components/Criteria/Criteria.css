@@ -6,11 +6,11 @@
 .criteria__title {
     color: #111111;
     font-size: 40px;
+    margin-bottom: 32px;
 }
 
 .criteria__list {
     display: flex;
-    /* flex-wrap: wrap; */
     width: 100%;
     gap: 20px;
 }
@@ -20,13 +20,6 @@
     font-size: 32px;
     font-weight: bold;
 }
-
-/* 
-.criteria__item{
-    width: 500px;
-} */
-
-
 
 @media (min-width: 320px) and (max-width: 1199px) {
 
@@ -48,5 +41,3 @@
         width: 100%;
     }
 }
-
-@media (min-width: 768px) and (max-width: 1199px) {}

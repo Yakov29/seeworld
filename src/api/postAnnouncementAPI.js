@@ -1,5 +1,4 @@
 export const postAnnouncementAPI = async (data) => {
-  console.log(data);
   try {
     const response = await fetch("https://6882916c21fa24876a9b3c72.mockapi.io/announcement", {
       method: "POST",
@@ -11,6 +10,6 @@ export const postAnnouncementAPI = async (data) => {
 
     return await response.json();
   } catch (error) {
-    console.log(error);
+    // Handle error appropriately, e.g., throw it or return a specific error object
   }
 };

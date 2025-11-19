@@ -5,56 +5,94 @@
 .cabinet{
     text-align: center;
     padding-top: 85px;
-
+    padding-bottom: 85px; /* Ensure consistent padding */
 }
 
 .cabinet__title{
-    font-size: 32px;
-
+    font-size: clamp(28px, 5vw, 32px); /* Responsive font size */
+    margin-bottom: 20px;
 }
 
 .cabinet__description{
-    font-size: 18px;
-    margin-top: 20px;
+    font-size: clamp(16px, 3vw, 18px); /* Responsive font size */
+    margin-bottom: 30px;
 }
 
 .cabinet__list{
-    display: block;
+    display: flex; /* Use flex for better control */
+    flex-direction: column;
+    gap: 20px; /* Space between list items */
     margin-top: 50px;
+    max-width: 550px; /* Limit list width */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .cabinet__item{
-    margin-bottom: 30px;
     display: flex;
-    max-width: 550px;
+    flex-direction: column; /* Stack type and input on small screens */
+    align-items: flex-start; /* Align text to the left */
     width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    align-items: center;
+    gap: 10px; /* Space between type and input */
 }
 
-
 .cabinet__type{
-    font-size: 16px;
-    margin-right: auto;
+    font-size: clamp(14px, 3vw, 16px); /* Responsive font size */
+    margin-right: auto; /* Push input to the right on larger screens */
 }
 
 .cabinet__input{
-    margin-left: auto;
-    max-width: 410px;
-    width: 100%;
+    width: 100%; /* Full width input */
     padding-left: 16px;
     height: 48px;
-    border: 5px solid  #266294;
+    border: 3px solid  #266294; /* Adjusted border width */
     background: none;
     color: #266294;
+    font-size: 16px; /* Ensure readable font size */
+    box-sizing: border-box; /* Include padding in width */
 }
 
 .cabinet__leave{
+    margin-top: 50px;
     margin-bottom: 100px;
-    padding: 20px;
+    padding: 15px 30px; /* Adjusted padding */
     background-color:  #266294;
-    font-size: 20px;
+    font-size: clamp(16px, 4vw, 20px); /* Responsive font size */
     color: white;
     font-weight: bold;
+    cursor: pointer;
+    border: none; /* Ensure no default button border */
+    border-radius: 5px; /* Slightly rounded corners */
+    transition: background-color 0.3s;
+}
+
+.cabinet__leave:hover {
+    background-color: #1e4f73;
+}
+
+/* Media queries for smaller adjustments */
+@media (min-width: 768px) {
+    .cabinet__item {
+        flex-direction: row; /* Row layout on larger screens */
+        align-items: center;
+    }
+    .cabinet__type {
+        margin-right: 20px; /* Space between type and input */
+    }
+    .cabinet__input {
+        max-width: 410px; /* Limit input width on larger screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .cabinet {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+    .cabinet__list {
+        gap: 15px;
+    }
+    .cabinet__leave {
+        padding: 12px 25px;
+    }
 }

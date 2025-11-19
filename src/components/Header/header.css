@@ -12,12 +12,13 @@ header{
 header .container{
     display: flex;
     align-items: center;
+    justify-content: space-between; /* Distribute items with space between */
 }
 
 .header__list{
-    margin-left: auto;
     display: flex;
     gap: 60px;
+    /* margin-left: auto; - Removed as justify-content handles this */
 }
 
 .header__link{
@@ -32,12 +33,13 @@ header .container{
     font-weight: 600;
     align-items: center;
     font-size: 20px;
-    margin-left: auto;
-    width: 200px;
+    /* margin-left: auto; - Removed as justify-content handles this */
+    padding: 0 20px; /* Use padding instead of fixed width */
     height: 44px;
     background: none;
     color: #266294;
     border: 3px solid #266294;
+    white-space: nowrap; /* Prevent text wrapping */
 }
 
 .addannouncement{
@@ -45,11 +47,12 @@ header .container{
 }
 
 .header__logo{
-     width: 73px;
+     max-width: 73px; /* Use max-width for flexibility */
+     height: auto;
 }
 
 .header__burger{
-  margin-left: auto;
+  margin-left: 20px; /* Add some space from other elements */
   display: none;
   background: none;
   border: none;
@@ -63,9 +66,9 @@ header .container{
   top: 0;
   right: -100%;
   width: 70%;
+  max-width: 300px; /* Limit mobile menu width */
   height: 100%;
   background: #CFE7F5;
-  /* opacity: 0.5; */
   transition: right 0.3s ease;
   padding: 80px 20px 20px;
   z-index: 1000;
@@ -110,16 +113,25 @@ header .container{
 }
 
 
-@media (min-width: 320px) and (max-width: 1199px) {
-  .header__list{
-      display: none;
-  }
-
-  .header__button{
-    display: none;
+/* Desktop-first approach for header elements */
+@media (max-width: 1199px) {
+  .header__list,
+  .header__button {
+      display: none; /* Hide desktop navigation and button */
   }
 
   .header__burger{
-    display: flex;
+    display: flex; /* Show burger menu */
   }
+}
+
+/* Ensure desktop elements are visible on larger screens */
+@media (min-width: 1200px) {
+    .header__list,
+    .header__button {
+        display: flex;
+    }
+    .header__burger {
+        display: none;
+    }
 }

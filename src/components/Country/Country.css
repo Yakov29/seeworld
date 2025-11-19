@@ -14,12 +14,12 @@
 }
 
 .country__section-title {
-    font-size: 32px
+    font-size: 32px;
+    margin-bottom: 24px;
 }
 
 .country__title {
     font-weight: bold;
-
 }
 
 .country__votes {
@@ -27,13 +27,18 @@
 }
 
 .country__image {
-    width: 413px;
+    width: 100%; /* Make image responsive */
+    max-width: 413px; /* Limit max width */
+    height: auto; /* Maintain aspect ratio */
     margin-bottom: 16px;
 }
 
+.country + .country {
+  margin-top: 40px;
+}
 
-@media (min-width: 320px) and (max-width: 1199px) {
 
+@media (max-width: 1199px) { /* Covers all screens up to 1199px */
     .country__section-title {
         text-align: center;
     }
@@ -47,11 +52,10 @@
         flex-wrap: wrap;
         justify-content: center;
         gap: 20px;
-
     }
 
     .country__item {
-        width: 345px;
+        width: 100%; /* Take full width of parent */
+        max-width: 345px; /* Limit max width of item */
     }
-
 }

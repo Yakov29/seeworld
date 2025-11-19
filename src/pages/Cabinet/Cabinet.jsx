@@ -4,7 +4,6 @@ import Container from "../../components/Container/Container";
 
 const Cabinet = ({ leave }) => {
     const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
@@ -15,9 +14,8 @@ const Cabinet = ({ leave }) => {
         if (user) {
             try {
                 const userData = JSON.parse(user);
-                if (userData && userData.email && userData.password) {
+                if (userData && userData.email) {
                     setEmail(userData.email);
-                    setPassword(userData.password);
                     setIsLoggedIn(true);
                 }
             } catch (error) {
@@ -29,18 +27,10 @@ const Cabinet = ({ leave }) => {
         }
     }, []);
 
-    const clear = () => {
-        localStorage.removeItem("user");
-                localStorage.removeItem("favorites");
-
-        document.location.href = "/"
-    }
-
     return (
         <main className="cabinet__main">
             <section className="cabinet">
                 <Container>
-
                     <h2 className="cabinet__title">Особистий кабінет</h2>
 
                     {isLoggedIn ? (
@@ -64,7 +54,7 @@ const Cabinet = ({ leave }) => {
                                     <input
                                         className="cabinet__input"
                                         type="password"
-                                        placeholder={password}
+                                        placeholder="********"
                                         readOnly
                                     />
                                 </li>
@@ -76,7 +66,7 @@ const Cabinet = ({ leave }) => {
                         </p>
                     )}
 
-                   <button className="cabinet__leave" onClick={clear} type="submit">Вийти</button>
+                   <button className="cabinet__leave" onClick={leave} type="button">Вийти</button>
 
                 </Container>
             </section>

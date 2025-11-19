@@ -16,29 +16,29 @@ const Register = ({ register }) => {
                         <p className="register__description">Зареєструйтесь, щоб отримати можливість забронювати житло</p>
                         <ul className="register__list">
                             <li className="register__item">
-                                <input type="text" name="name" placeholder="Ваше ім’я*" className="register__input" />
+                                <input type="text" name="name" placeholder="Ваше ім’я*" className="register__input" required />
                             </li>
                             <li className="register__item">
-                                <input type="text" name="surname" placeholder="Прізвище*" className="register__input" />
+                                <input type="text" name="surname" placeholder="Прізвище*" className="register__input" required />
                             </li>
                             <li className="register__item">
-                                <input type="email" name="email" placeholder="Email*" className="register__input" />
+                                <input type="email" name="email" placeholder="Email*" className="register__input" required />
                             </li>
                             <li className="register__item">
-                                <input type="text" name="phone" placeholder="Номер телефону*" className="register__input" />
+                                <input type="text" name="phone" placeholder="Номер телефону*" className="register__input" required />
                             </li>
                             <li className="register__item">
-                                <input type="number" name="age" placeholder="Ваш вік*" className="register__input" />
+                                <input type="number" name="age" placeholder="Ваш вік*" className="register__input" required />
                             </li>
                             <li className="register__item">
                                 <h4 className="register__password">Придумайте пароль</h4>
-                                <input type="password" name="password" placeholder="**************" className="register__input" />
+                                <input type="password" name="password" placeholder="**************" className="register__input" required />
                             </li>
                             <li className="register__item">
-                                <input type="password" name="reppassword" placeholder="Password111111" className="register__input" />
+                                <input type="password" name="reppassword" placeholder="Повторіть пароль*" className="register__input" required />
                             </li>
                         </ul>
-                        <button className="register__button" type="submit">Зареєстуватись</button>
+                        <button className="register__button" type="submit">Зареєструватись</button>
                     </form>
                     <div className="register__noaccount">
                         <h3 className="register__noaccount__title">

@@ -1,6 +1,5 @@
 import { useEffect, useState, lazy } from "react";
-import { Routes, Route, useFetcher } from "react-router-dom";
-import { postAnnouncementAPI } from "./api/postAnnouncementAPI";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { getProfileAPI } from "./api/getProfileAPI";
 import pushProfileAPI from "./api/pushProfileAPI";
 
@@ -18,23 +17,9 @@ const Footer = lazy(() => import("./components/Footer/Footer"));
 const Favorite = lazy(() => import("./pages/Favorites/Favorites"));
 
 const App = () => {
-  const [selectedType, setSelectedType] = useState("");
   const [profile, setProfile] = useState(null);
   const [favorites, setFavorites] = useState([]);
-
-  useEffect(() => {
-    const heartIcon = document.querySelector(".heart");
-    // const heartFavorite = document.querySelector(".")
-    // if (document.location.href === "/announcements") {
-      const heartFavorite = document.querySelector(".supereco__favorite");
-    // }
-
-    if (profile === null) {
-      heartIcon.style.display = "none";
-    } else {
-      heartIcon.style.display = "block";
-    }
-  });
+  const navigate = useNavigate();
 
   const register = (e) => {
     e.preventDefault();
@@ -56,59 +41,32 @@ const App = () => {
     setProfile(newUser);
     e.target.reset();
 
-    // document.location.href = "/";
+    navigate("/");
   };
 
   const login = (e) => {
     e.preventDefault();
     const formData = e.target;
     const email = formData.email.value;
-    const password = formData.password.value;
+
     getProfileAPI(email).then((data) => {
-      if (data === "N") {
-        alert("Wrong Email");
+      if (data === null) {
+        alert("Неправильный Email или пользователь не найден");
       } else {
         console.log(data);
         localStorage.setItem("user", JSON.stringify(data));
         setProfile(data);
-        document.location.href = "/";
+        navigate("/");
       }
     });
   };
 
   const leave = () => {
     localStorage.removeItem("user");
+    localStorage.removeItem("favorites");
     setProfile(null);
-  };
-
-  const selectType = (e) => {
-    document.querySelectorAll(".createform__button").forEach((el) => {
-      el.style.backgroundColor = "#fff";
-      el.style.color = "#000";
-    });
-    e.target.style.backgroundColor = "#266294";
-    e.target.style.color = "#fff";
-    setSelectedType(e.target.textContent);
-  };
-
-  const createAnnouncement = (e) => {
-    e.preventDefault();
-    const data = e.target;
-    const announcement = {
-      country: data.country.value,
-      city: data.city.value,
-      street: data.street.value,
-      type: selectedType,
-      guests: data.guests.value,
-      bedrooms: data.bedrooms.value,
-      beds: data.beds.value,
-      bathrooms: data.beds.value,
-      description: data.description.value,
-      image: data.image.value,
-      email: data.email.value,
-    };
-    postAnnouncementAPI(announcement);
-    document.location.href = "/announcements";
+    setFavorites([]);
+    navigate("/");
   };
 
   const favorite = (e, announcementId) => {
@@ -142,7 +100,10 @@ const App = () => {
       const res = await fetch(
         `https://6882916c21fa24876a9b3c72.mockapi.io/users/${user.id}`
       );
-      if (!res.ok) throw new Error("Не вдалося отримати користувача");
+      if (!res.ok) {
+        console.error("Не вдалося отримати користувача");
+        return [];
+      }
       const data = await res.json();
       return Array.isArray(data.favorites) ? data.favorites : [];
     } catch (error) {
@@ -181,10 +142,7 @@ const App = () => {
           <Route
             path="/create"
             element={
-              <Create
-                createAnnouncement={createAnnouncement}
-                selectType={selectType}
-              />
+              <Create />
             }
           />
           <Route

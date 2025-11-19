@@ -1,9 +1,9 @@
-import React from "react"
+import { useEffect } from "react"
 import SuperEco from "../../components/SuperEco/SuperEco"
 
 
 const AllAnnouncements = ({favorite, profile}) => {
-     React.useEffect(() => {
+     useEffect(() => {
             document.title = "See World | All Announcements"
         }, [])
     return (

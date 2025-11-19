@@ -28,15 +28,12 @@ const Header = ({ profile }) => {
           <li className="header__item heart">
             <Link to="/favorites" className="header__link"><FaRegHeart /></Link>
           </li>
-          <li className="header__item">
-            <Link to="" className="header__link"><img src="./images/user.svg" alt="" /></Link>
-          </li>
-          <li className="header__item">
-            <Link to="/cabinet" id="cabinet" className="header__link">Особистий кабінет</Link>
-          </li>
         </ul>
         {!profile && (
           <Link className="header__button" to="/register">Зареєструватись</Link>
+        )}
+        {profile && (
+          <Link className="header__button" to="/cabinet">Особистий кабінет</Link>
         )}
         <button className="header__burger" onClick={toggleMenu}>
           {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
@@ -48,9 +45,11 @@ const Header = ({ profile }) => {
             <li><Link to="/announcements" onClick={closeMenu}>Всі оголошення</Link></li>
             <li><Link to="/create" onClick={closeMenu}>Додати оголошення</Link></li>
             <li><Link to="/favorites" onClick={closeMenu}>Обране</Link></li>
-            <li><Link to="/cabinet" onClick={closeMenu}>Особистий кабінет</Link></li>
             {!profile && (
               <li><Link to="/register" onClick={closeMenu}>Зареєструватись</Link></li>
+            )}
+            {profile && (
+              <li><Link to="/cabinet" onClick={closeMenu}>Особистий кабінет</Link></li>
             )}
           </ul>
         </nav>

@@ -1,23 +1,22 @@
 import "./Criteria.css";
 import Container from "../Container/Container";
 import {criteria} from "../../data/criteria";
-import { useDispatch, useSelector } from "react-redux";
 
 const Criteria = () => {
-
   return (
     <section className="criteria">
       <Container>
         <h2 className="criteria__title">Критерії оголошення</h2>
         <ul className="criteria__list">
-          {criteria.map((criteria) => {
+          {criteria.map((item) => {
             return (
-              <li className="criteria__item">
+              <li className="criteria__item" key={item.id}>
                 <img
                   className="criteria__image"
-                  src={criteria.image}
+                  src={item.image}
+                  alt={item.name}
                 />
-                <p className="criteria__description">{criteria.name}</p>
+                <p className="criteria__description">{item.name}</p>
               </li>
             );
           })}

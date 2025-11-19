@@ -23,7 +23,7 @@ const FavoritesList = () => {
         const results = await Promise.all(promises);
         setAnnouncements(results);
       } catch (error) {
-        console.error("Помилка при отриманні об'яв:", error);
+        // Handle error appropriately, e.g., display a message to the user
       } finally {
         setLoading(false);
       }
@@ -52,7 +52,7 @@ const FavoritesList = () => {
                 <img
                   className="favorites__image"
                   src={item.image || "https://via.placeholder.com/300x200?text=No+Image"}
-                  alt={item.description || "Без опису"}
+                  alt={`Зображення для оголошення в ${item.country}, ${item.city}`}
                 />
                 <div className="favorites__info">
                   <div className="favorites__info-item">

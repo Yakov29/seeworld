@@ -4,7 +4,7 @@
 }
 
 .createform__title {
-    font-size: 32px;
+    font-size: clamp(24px, 5vw, 32px); /* Responsive font size */
     text-align: center;
 }
 
@@ -19,10 +19,9 @@
     gap: 36px;
 }
 
-.cteateform__text {
-    font-size: 24px;
+.createform__text {
+    font-size: clamp(18px, 4vw, 24px); /* Responsive font size */
     margin-bottom: 20px;
-
 }
 
 .createform__input {
@@ -31,29 +30,36 @@
     border: 3px solid #266294;
     padding-left: 16px;
     padding-right: 16px;
-
+    box-sizing: border-box; /* Ensure padding is included in width */
 }
 
 .createform__input::placeholder {
     color: #266294;
-
 }
 
 
-.cteateform__buttons {
+.createform__buttons {
     display: flex;
-    gap: 22px;
+    flex-wrap: wrap; /* Allow buttons to wrap */
+    gap: 10px; /* Adjusted gap for responsiveness */
+    justify-content: center; /* Center buttons */
 }
 
 .createform__button {
-    width: 123px;
+    flex: 1 1 auto; /* Allow buttons to grow and shrink */
+    max-width: 123px; /* Maintain original max-width */
     background: none;
     border: 3px solid #266294;
     font-size: 16px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 10px 15px; /* Adjusted padding */
     cursor: pointer;
+    box-sizing: border-box;
+    white-space: nowrap; /* Prevent text wrapping inside button */
+}
 
+.createform__button.active {
+    background-color: #266294;
+    color: #fff;
 }
 
 .createform__more {
@@ -65,20 +71,23 @@
 
 .createform__more-item {
     width: 100%;
-    position: relative;
+    display: flex; /* Use flex for alignment */
+    justify-content: space-between; /* Space out span and input */
+    align-items: center;
 }
 
 .createform__more-span {
-    font-size: 24px;
+    font-size: clamp(16px, 3vw, 24px); /* Responsive font size */
 }
 
 .createform__more-input {
-    font-size: 24px;
+    font-size: clamp(16px, 3vw, 24px); /* Responsive font size */
     color: black;
     font-weight: bold;
-    position: absolute;
-    width: 50px;
-    right: 0;
+    width: 60px; /* Adjusted width */
+    text-align: right; /* Align text to the right */
+    border: 1px solid #ccc; /* Add a subtle border */
+    padding: 5px;
 }
 
 .createform__more-input::placeholder {
@@ -90,16 +99,19 @@
     margin-top: 20px;
     border: 3px solid #266294;
     width: 100%;
-    height: 100%;
+    height: 100px; /* Set a default height */
     color: #266294;
     max-height: 126px;
-    max-width: 100%;
     min-width: 100%;
+    padding: 10px; /* Add padding */
+    box-sizing: border-box;
+    resize: vertical; /* Allow vertical resizing */
 }
 
 .createform__image-text {
     margin-bottom: 36px;
     color: #757575;
+    font-size: clamp(14px, 2.5vw, 16px); /* Responsive font size */
 }
 
 .createform__send{
@@ -108,7 +120,7 @@
     background-color: #266294;
     color: white;
     font-weight: bold;
-    font-size: 24px;
+    font-size: clamp(18px, 4vw, 24px); /* Responsive font size */
     height: 52px;
     justify-content: center;
     align-items: center;
@@ -116,10 +128,26 @@
     width: 100%;
     margin-left: auto;
     margin-right: auto;
+    box-sizing: border-box;
 }
 
 .createform__notreg{
-    font-size: 32px;
+    font-size: clamp(24px, 5vw, 32px); /* Responsive font size */
     font-weight: bold;
     text-align: center;
+    padding: 50px 15px; /* Add padding for better appearance */
+}
+
+/* Media queries for smaller adjustments */
+@media (max-width: 480px) {
+    .createform__buttons {
+        flex-direction: column; /* Stack buttons vertically on very small screens */
+        align-items: center;
+    }
+    .createform__button {
+        max-width: 100%; /* Full width buttons */
+    }
+    .createform__more-input {
+        width: 40px; /* Smaller width for input on very small screens */
+    }
 }

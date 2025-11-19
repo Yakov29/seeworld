@@ -1,13 +1,12 @@
 import CreateForm from "../../components/CreateForm/CreateForm";
 
-const Create = ({createAnnouncement, selectType}) => {
+const Create = () => {
     return (
         <main>
-            <CreateForm createAnnouncement={createAnnouncement} selectType={selectType}/>
+            <CreateForm />
         </main>
     )
 }
 
 
 export default Create;
-

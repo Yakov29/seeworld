@@ -9,7 +9,7 @@ const Hero = () => {
         <h1 className="hero__title">Знайди своє місце</h1>
         <span className="hero__description">Подорожуй зі смаком</span>
         <div className="hero__buttons">
-          <button className="hero__button">Знайти оголошення</button>
+          <Link to="/announcements"><button className="hero__button">Знайти оголошення</button></Link>
           <Link to="/create"><button className="hero__button newButton" id="login">Подати оголошення</button></Link>
         </div>
       </Container>

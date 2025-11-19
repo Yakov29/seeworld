@@ -4,34 +4,30 @@
       "id": "ac79",
       "country": "Грузия",
       "city": "Тебилиси",
-      "address": "Улица Победы 34",
-      "type": [
-        "apartment"
-      ],
+      "street": "Улица Победы 34",
+      "type": "apartment",
       "description": "Квартира 2 комнатная",
-      "photos": "https://make-self.net/images/05/a41383ca0574502d6c4ee53bea3c04b7.jpeg",
+      "image": "https://via.placeholder.com/300x200?text=No+Image",
       "email": "maloyder29ya@gmail.com"
     },
     {
       "id": "34ca",
       "country": "Украина",
       "city": "Dnipro",
-      "address": "mandrykovskaya",
-      "type": [],
+      "street": "mandrykovskaya",
+      "type": "apartment",
       "description": "",
-      "photos": "https://www.aklas.ua/storage/fotobank/9f2658651107c79deab7f4378d82054d.jpg",
+      "image": "https://www.aklas.ua/storage/fotobank/9f2658651107c79deab7f4378d82054d.jpg",
       "email": "maloyder29ya@gmail.com"
     },
     {
       "id": "6a03",
       "country": "Украина",
       "city": "Dnipro",
-      "address": "mandrykovskaya",
-      "type": [
-        "apartment"
-      ],
+      "street": "mandrykovskaya",
+      "type": "apartment",
       "description": "",
-      "photos": "C:\\fakepath\\0e7adea5-5283-4cc6-b0dc-b7c469357cf7.JPG",
+      "image": "https://via.placeholder.com/300x200?text=No+Image",
       "email": "maloyder29ya@gmail.com"
     }
   ]

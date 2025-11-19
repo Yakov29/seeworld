@@ -1,19 +1,25 @@
 .login{
     text-align: center;
-    padding-top: 150px;
-    padding-bottom: 150px;
+    padding-top: 80px; /* Adjusted padding */
+    padding-bottom: 80px; /* Adjusted padding */
+}
+
+.login__form {
+    max-width: 400px; /* Limit form width */
+    margin: 0 auto; /* Center the form */
+    padding: 20px; /* Add padding to the form itself */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional: add a subtle shadow */
+    border-radius: 8px; /* Optional: round corners */
 }
 
 .login__title {
-    font-size: 32px;
+    font-size: clamp(24px, 5vw, 32px); /* Responsive font size */
     margin-bottom: 25px;
-
 }
 
 .login__description {
-    font-size: 18px;
+    font-size: clamp(16px, 3vw, 18px); /* Responsive font size */
     margin-bottom: 25px;
-
 }
 
 .login__inputs {
@@ -24,8 +30,6 @@
     margin-bottom: 25px;
 }
 
-
-
 .login__input {
     box-sizing: border-box;
     width: 100%;
@@ -34,51 +38,19 @@
     background: none;
     border: 3px solid #266294;
     color: #266294;
+    font-size: 16px; /* Ensure input font size is readable */
 }
 
-.login__button {
-    width: 100%;
-    height: 48px;
-    margin-top: 25px;
-    background-color: #266294;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-.login__button:hover {
-    background-color: #1e4f73;
-}
-
-.login__select{
-    display: flex;
-    justify-content: center;
-    gap: 31px;
-}
-
-.login__select__item{
-    display: flex;
-    align-items: center;
-}
-
-.login__select__checkbox{
-    background: none;
-    margin-right: 10px;
-    width: 20px;
-    height: 20px;
-    border: 1px solid #266294;
-}
-
-.logib__select__span{
-    font-size: 20px;
-    font-weight: bold;
+.login__input::placeholder {
+    color: #266294;
 }
 
 .login__forgot{
     color:  #766F6F;
     text-decoration: underline;
-    font-size: 20px;
-
+    font-size: clamp(14px, 3vw, 20px); /* Responsive font size */
+    display: block; /* Ensure it takes full width for centering */
+    margin-top: -10px; /* Adjust spacing */
 }
 
 .login__submit{
@@ -91,19 +63,26 @@
     height: 50px;
     border: none;
     color: white;
-    font-size: 20px;
+    font-size: clamp(18px, 4vw, 20px); /* Responsive font size */
     font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login__submit:hover {
+    background-color: #1e4f73;
 }
 
 .login__service__title{
-    font-size: 20px;
+    font-size: clamp(16px, 3vw, 20px); /* Responsive font size */
     font-weight: bold;
     margin-top: 25px;
 }
 
 .login__service__list{
     display: flex;
-    gap: 30px;
+    flex-wrap: wrap; /* Allow icons to wrap */
+    gap: 15px; /* Adjusted gap */
     justify-content: center;
     margin-top: 25px;
 }
@@ -111,20 +90,31 @@
 .login__service__image{
     width: 40px;
     height: 40px;
-    border-radius: 100px;
+    border-radius: 50%; /* Use 50% for perfect circle */
     border: 2px solid #266294;
     padding: 5px;
+    box-sizing: border-box;
 }
 
 .login__noaccount__title{
-    font-size: 20px;
+    font-size: clamp(16px, 3vw, 20px); /* Responsive font size */
     margin-top: 25px;
-    margin-bottom: 25px;
+    margin-bottom: 10px; /* Adjusted spacing */
 }
 
 .login__noaccount__link{
-    margin-top: 25px;
-    font-size: 20px;
+    font-size: clamp(16px, 3vw, 20px); /* Responsive font size */
     color: #766F6F;
     text-decoration: underline;
+    display: block; /* Ensure it takes full width for centering */
+}
+
+/* Media queries for smaller adjustments */
+@media (max-width: 480px) {
+    .login__form {
+        padding: 15px;
+    }
+    .login__inputs {
+        gap: 15px;
+    }
 }

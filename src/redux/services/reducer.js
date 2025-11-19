@@ -1,14 +1,12 @@
-import { createReducer, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import criteria1 from "../../images/criteria1.png";
 import criteria2 from "../../images/criteria2.png";
 import criteria3 from "../../images/criteria3.png";
 import criteria4 from "../../images/criteria4.png";
 
-import { addService } from "./actions";
-import { getAnnouncement, addAnnouncement } from "../thunks/thunk";
-import { pushProfile } from "../thunks/thunk";
+import { getAnnouncement, addAnnouncement, pushProfile } from "../thunks/thunk";
 
-const initialState = {
+const servicesInitialState = {
   services: [
     {
       image: criteria1,
@@ -27,33 +25,11 @@ const initialState = {
       name: "Кімнати",
     },
   ],
-  announcements: [],
-  profile: {},
 };
-
-// export const servicesReducer = (state = initialState, action) => {
-//     switch (action.type) {
-//         case "addService" :
-//         return {
-//             ...state,
-//             services: [...state.services, action.payload],
-//         }
-//     }
-//     return state
-// };
-
-// export const servicesReducer = createReducer(initialState, (builder) => {
-//   builder.addCase(addService, (state, action) => {
-//     return {
-//       ...state,
-//       services: [...state.services, action.payload],
-//     };
-//   });
-// });
 
 export const servicesSlice = createSlice({
   name: "services",
-  initialState,
+  initialState: servicesInitialState,
   reducers: {
     addService: (state, action) => {
       state.services = [...state.services, action.payload];
@@ -84,20 +60,39 @@ export const announcementSlice = createSlice({
       .addCase(getAnnouncement.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message;
+      })
+      .addCase(addAnnouncement.fulfilled, (state, { payload }) => {
+        state.announcements.push(payload);
       });
   },
 });
 
 export const announcementReducer = announcementSlice.reducer;
 
+const profilesInitialState = {
+  profile: null,
+  isLoading: false,
+  error: null,
+};
+
 export const profilesSlice = createSlice({
   name: "profiles",
-  initialState,
-  reducers: {
-    pushProfile: (state, action) => {
-      state.profile = {
-        name: action.payload.name,
-      };
-    },
+  initialState: profilesInitialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(pushProfile.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(pushProfile.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.profile = payload;
+      })
+      .addCase(pushProfile.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message;
+      });
   },
 });
+
+export const profilesReducer = profilesSlice.reducer;

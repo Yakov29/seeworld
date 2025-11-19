@@ -2,11 +2,11 @@ import "./CreateForm.css";
 import Container from "../Container/Container";
 import { useDispatch } from "react-redux";
 import { addAnnouncement } from "../../redux/thunks/thunk";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const CreateForm = ({ selectType }) => {
+const CreateForm = () => {
   const dispatch = useDispatch();
-  const [formData, setFormData] = useState({
+  const initialFormData = {
     country: "",
     city: "",
     street: "",
@@ -18,9 +18,17 @@ const CreateForm = ({ selectType }) => {
     description: "",
     image: "",
     email: "",
-  });
+  };
+  const [formData, setFormData] = useState(initialFormData);
+  const [selectedTypeLocal, setSelectedTypeLocal] = useState("");
 
-  const user = localStorage.getItem("user");
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  useEffect(() => {
+    if (user && user.email) {
+      setFormData((prev) => ({ ...prev, email: user.email }));
+    }
+  }, [user]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,17 +36,19 @@ const CreateForm = ({ selectType }) => {
   };
 
   const handleSelectType = (e) => {
-    selectType(e);
-    setFormData((prev) => ({ ...prev, type: e.target.textContent }));
+    const type = e.target.textContent;
+    setSelectedTypeLocal(type);
+    setFormData((prev) => ({ ...prev, type: type }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(addAnnouncement(formData));
-    // setFormData({ ...initial state... });
+    setFormData(initialFormData);
+    setSelectedTypeLocal("");
   };
 
-  if (user === null) {
+  if (!user) {
     return (
       <section className="createform">
         <p className="createform__notreg">
@@ -54,7 +64,7 @@ const CreateForm = ({ selectType }) => {
           <form className="createform__form" onSubmit={handleSubmit}>
             <ul className="createform__list">
               <li className="createform__item">
-                <h4 className="cteateform__text">Ваша країна</h4>
+                <h4 className="createform__text">Ваша країна</h4>
                 <input
                   type="text"
                   className="createform__input"
@@ -62,10 +72,11 @@ const CreateForm = ({ selectType }) => {
                   placeholder="Введіть назву країни"
                   value={formData.country}
                   onChange={handleChange}
+                  required
                 />
               </li>
               <li className="createform__item">
-                <h4 className="cteateform__text">Вкажіть населений пункт</h4>
+                <h4 className="createform__text">Вкажіть населений пункт</h4>
                 <input
                   type="text"
                   className="createform__input"
@@ -73,10 +84,11 @@ const CreateForm = ({ selectType }) => {
                   placeholder="Населений пункт "
                   value={formData.city}
                   onChange={handleChange}
+                  required
                 />
               </li>
               <li className="createform__item">
-                <h4 className="cteateform__text">Вулиця, район міста</h4>
+                <h4 className="createform__text">Вулиця, район міста</h4>
                 <input
                   type="text"
                   className="createform__input"
@@ -84,43 +96,28 @@ const CreateForm = ({ selectType }) => {
                   placeholder="Наприклад, вул. Олімпійська, Південний район"
                   value={formData.street}
                   onChange={handleChange}
+                  required
                 />
               </li>
               <li className="createform__item">
-                <h4 className="cteateform__text">Вкажіть тип приміщення</h4>
-                <div className="cteateform__buttons">
-                  <button
-                    type="button"
-                    onClick={handleSelectType}
-                    className="createform__button"
-                  >
-                    Будинок
-                  </button>
-                  <button
-                    type="button"
-                    onClick={handleSelectType}
-                    className="createform__button"
-                  >
-                    Квартира
-                  </button>
-                  <button
-                    type="button"
-                    onClick={handleSelectType}
-                    className="createform__button"
-                  >
-                    Кімната
-                  </button>
-                  <button
-                    type="button"
-                    onClick={handleSelectType}
-                    className="createform__button"
-                  >
-                    Студія
-                  </button>
+                <h4 className="createform__text">Вкажіть тип приміщення</h4>
+                <div className="createform__buttons">
+                  {["Будинок", "Квартира", "Кімната", "Студія"].map((type) => (
+                    <button
+                      key={type}
+                      type="button"
+                      onClick={handleSelectType}
+                      className={`createform__button ${
+                        selectedTypeLocal === type ? "active" : ""
+                      }`}
+                    >
+                      {type}
+                    </button>
+                  ))}
                 </div>
               </li>
               <li className="createform__item">
-                <h4 className="cteateform__text">
+                <h4 className="createform__text">
                   Вкажіть основні відомості про своє житло
                 </h4>
                 <ul className="createform__more">
@@ -133,6 +130,8 @@ const CreateForm = ({ selectType }) => {
                       className="createform__more-input"
                       value={formData.guests}
                       onChange={handleChange}
+                      min="1"
+                      required
                     />
                   </li>
                   <li className="createform__more-item">
@@ -144,6 +143,8 @@ const CreateForm = ({ selectType }) => {
                       className="createform__more-input"
                       value={formData.bedrooms}
                       onChange={handleChange}
+                      min="1"
+                      required
                     />
                   </li>
                   <li className="createform__more-item">
@@ -155,6 +156,8 @@ const CreateForm = ({ selectType }) => {
                       className="createform__more-input"
                       value={formData.beds}
                       onChange={handleChange}
+                      min="1"
+                      required
                     />
                   </li>
                   <li className="createform__more-item">
@@ -166,12 +169,14 @@ const CreateForm = ({ selectType }) => {
                       className="createform__more-input"
                       value={formData.bathrooms}
                       onChange={handleChange}
+                      min="1"
+                      required
                     />
                   </li>
                 </ul>
               </li>
               <li className="createform__item">
-                <h4 className="cteateform__text">
+                <h4 className="createform__text">
                   Запишіть особливості вашого приміщення{" "}
                 </h4>
                 <textarea
@@ -179,10 +184,11 @@ const CreateForm = ({ selectType }) => {
                   className="createform__textarea"
                   value={formData.description}
                   onChange={handleChange}
+                  required
                 ></textarea>
               </li>
               <li className="createform__item">
-                <h4 className="cteateform__text">Завантажте фото</h4>
+                <h4 className="createform__text">Завантажте фото</h4>
                 <p className="createform__image-text">
                   Щоб розпочати, потрібно зробити 5 фотографій. Згодом можна
                   додати більше фото або внести необхідні зміни.
@@ -194,10 +200,11 @@ const CreateForm = ({ selectType }) => {
                   placeholder="Посилання на фото"
                   value={formData.image}
                   onChange={handleChange}
+                  required
                 />
               </li>
               <li className="createform__item">
-                <h4 className="cteateform__text">
+                <h4 className="createform__text">
                   Вкажіть ваш емейл для підтвердження
                 </h4>
                 <input
@@ -207,6 +214,8 @@ const CreateForm = ({ selectType }) => {
                   placeholder="Введіть email"
                   value={formData.email}
                   onChange={handleChange}
+                  required
+                  readOnly={!!user}
                 />
               </li>
               <button type="submit" className="createform__send">

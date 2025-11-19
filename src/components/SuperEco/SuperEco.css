@@ -6,12 +6,12 @@
 .allannouncements__title {
     font-size: 36px;
     font-weight: bold;
-    text-align: center
+    text-align: center;
+    margin-bottom: 32px;
 }
 
 .supereco__title {
-    font-weight: 24px;
-
+    font-size: 24px;
 }
 
 .supereco__content {
@@ -38,40 +38,98 @@
 }
 
 .supereco__item {
-    max-width: 413px;
+    max-width: 413px; /* Default max-width for larger screens */
     width: 100%;
     position: relative;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Add subtle shadow */
+    border-radius: 8px;
+    overflow: hidden; /* Ensure content stays within bounds */
 }
 
 .supereco__image {
     width: 100%;
     object-fit: cover;
-    height: 300px;
+    height: 250px; /* Adjusted fixed height for better responsiveness */
 }
 
 .supereco__name {
     margin-top: 12px;
     margin-left: 12px;
+    font-size: 20px; /* Default font size */
+    font-weight: bold;
 }
 
 .supereco__description {
     color: #766F6F;
     margin-left: 12px;
-}
-
-.supereco__stars {
-    color: #266294;
-    margin-left: 12px;
-    align-items: center;
+    font-size: 16px; /* Default font size */
 }
 
 .supereco__id {
     color: #266294;
     margin-left: 12px;
     align-items: center;
+    font-size: 14px; /* Default font size */
+    margin-bottom: 10px; /* Add margin to bottom */
 }
 
 
 .supereco__favorite {
-    margin-left: 12px;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    cursor: pointer;
+    color: #266294;
+    font-size: 24px; /* Slightly larger icon */
+    background: none; /* Ensure no background */
+    border: none; /* Ensure no border */
+    padding: 0; /* Remove padding */
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 1200px) {
+    .supereco__item {
+        max-width: 350px; /* Adjust max-width for medium screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .allannouncements__title {
+        font-size: 30px;
+    }
+    .supereco__item {
+        max-width: 90%; /* Allow items to take more width on smaller screens */
+    }
+    .supereco__image {
+        height: 200px; /* Further reduce image height */
+    }
+    .supereco__name {
+        font-size: 18px;
+    }
+    .supereco__description {
+        font-size: 14px;
+    }
+    .supereco__id {
+        font-size: 12px;
+    }
+    .supereco__favorite {
+        font-size: 20px; /* Adjust icon size */
+        bottom: 8px;
+        right: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .allannouncements__title {
+        font-size: 24px;
+    }
+    .supereco__list {
+        gap: 15px;
+    }
+    .supereco__item {
+        max-width: 100%; /* Full width on very small screens */
+    }
+    .supereco__image {
+        height: 180px;
+    }
 }

@@ -1,13 +1,13 @@
 import "../Country.css";
 
-const ConturyItem = ({franceData}) => {
+const CountryItem = ({ data }) => {
   return (
     <li className="country__item">
-      <img className="country__image" src={franceData.image} alt="country" />
-      <span className="country__title">{franceData.title}</span>
-      <p className="country__votes">{franceData.hotels} готелів</p>
+      <img className="country__image" src={data.image} alt="country" />
+      <span className="country__title">{data.title}</span>
+      <p className="country__votes">{data.hotels} готелів</p>
     </li>
   );
 };
 
-export default ConturyItem;
+export default CountryItem;

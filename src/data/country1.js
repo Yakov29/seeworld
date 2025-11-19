@@ -1,9 +1,3 @@
-import { customAlphabet } from 'nanoid'
-const nanoid = customAlphabet('1234567890abcdef', 10)
-
-// import france1 from "../images/france1.png"
-// import france2 from "../images/france2.png"
-// import france3 from "../images/france3.png"
 export const france = [
   {
     title: "Nantes",
@@ -20,12 +14,4 @@ export const france = [
     hotels: 12278,
     image: "https://th.bing.com/th/id/OIP.NzdZWrvQO8hCjAgsbMTsSgAAAA?rs=1&pid=ImgDetMain",
   },
-]
-
-france.forEach((elem) => {
- 
-  elem.id = nanoid()
-})
-
-
-
+];
