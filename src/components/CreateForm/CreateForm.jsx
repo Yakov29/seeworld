@@ -45,7 +45,7 @@ const CreateForm = () => {
     e.preventDefault();
     dispatch(addAnnouncement(formData));
     setFormData(initialFormData);
-    setSelectedTypeLocal("");
+    document.location.href = "/"
   };
 
   if (!user) {

@@ -5,6 +5,9 @@ import "./SuperEco.css";
 import { useSelector, useDispatch } from "react-redux";
 import { getAnnouncement } from "../../redux/thunks/thunk";
 
+import { useFilterState } from "../../redux/selector";
+import { memoizedFilterAnnouncements } from "../../redux/selector";
+
 const SuperEco = ({ favorite, profile }) => {
   const [favoritesIds, setFavoritesIds] = useState([]);
   const dispatch = useDispatch();
@@ -12,9 +15,11 @@ const SuperEco = ({ favorite, profile }) => {
   const announcements = useSelector(
     (state) => state.announcementReducer.announcements
   );
-
+useFilterState()
+memoizedFilterAnnouncements()
   useEffect(() => {
     dispatch(getAnnouncement());
+    
   }, [dispatch]);
 
   useEffect(() => {

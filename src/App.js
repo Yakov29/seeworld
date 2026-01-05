@@ -50,7 +50,7 @@ const App = () => {
     setProfile(newUser);
     e.target.reset();
 
-    navigate("/");
+    navigate("/")
   };
 
   const login = (e) => {
